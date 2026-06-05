@@ -5,7 +5,7 @@ from formatter import format_result
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
   await update.message.reply_text(
-      "👋 *Grammar Bot*\n\nSend me any English sentence!",
+      "Hey👋, Welcome to *Grammeon Bot*\n\nSend me any English sentence to fix it!",
       parse_mode='Markdown'
   )
     
@@ -17,7 +17,7 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
   
 async def example_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     msg = await update.message.reply_text("🔍 Analyzing...")
-    result = check_text("I goed to school and learned many informations.")
+    result = check_message("I goed to school and learned many informations.")
     await msg.edit_text(format_result(result), parse_mode='Markdown')
     
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
