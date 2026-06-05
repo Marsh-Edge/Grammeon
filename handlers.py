@@ -28,5 +28,5 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     return
   
   thinking = await update.message.reply_text("🤔 Checking...")
-  result = check_message(text)
+  result = check_message1(text)
   await thinking.edit_text(format_result(result), parse_mode='Markdown')
