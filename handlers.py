@@ -14,6 +14,11 @@ async def help_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
       "📖 Just send English text.\n/example — see a sample",
       parse_mode='Markdown'
   )
+  
+async def example_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    msg = await update.message.reply_text("🔍 Analyzing...")
+    result = check_text("I goed to school and learned many informations.")
+    await msg.edit_text(format_result(result), parse_mode='Markdown')
     
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
   text = update.message.text.strip()
