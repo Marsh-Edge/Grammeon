@@ -1,5 +1,5 @@
 from telegram import Update
-from telegram.ext import contexttypes
+from telegram.ext import ContextTypes
 from corrector import check_message
 from formatter import format_result
 
