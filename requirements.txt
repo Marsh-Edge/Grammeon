@@ -1,3 +1,0 @@
-python-telegram-bot
-language_tool_python
-python-dotenv
