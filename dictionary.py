@@ -57,6 +57,5 @@ async def define(word: str) -> str:
         return f"❌ Sorry, I couldn't find the word *{word}*."
     if resp.status_code != 200:
         return f"⚠️ Something went wrong (status {resp.status_code}). Try again later."
-
     data = resp.json()
     return format_definition(data)

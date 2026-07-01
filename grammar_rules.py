@@ -71,6 +71,98 @@ GRAMMAR_RULES = [
     (r'\b(He|She|It)\s+don\'t\b',r"\1 doesn't","Use 'doesn't' with 'He/She/It'."),
     (r'\b(He|She|It)\s+were\b',  r'\1 was',    "Use 'was' with 'He/She/It' in indicative mood."),
 
+    # He/She/It + base verb (missing 3rd person -s)
+    (r'\b(He|She|It)\s+go\b',       r'\1 goes',    "Use 'goes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+come\b',     r'\1 comes',   "Use 'comes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+make\b',     r'\1 makes',   "Use 'makes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+take\b',     r'\1 takes',   "Use 'takes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+eat\b',      r'\1 eats',    "Use 'eats' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+drink\b',    r'\1 drinks',  "Use 'drinks' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+read\b',     r'\1 reads',   "Use 'reads' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+write\b',    r'\1 writes',  "Use 'writes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+speak\b',    r'\1 speaks',  "Use 'speaks' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+swim\b',     r'\1 swims',   "Use 'swims' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+sing\b',     r'\1 sings',   "Use 'sings' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+run\b',      r'\1 runs',    "Use 'runs' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+play\b',     r'\1 plays',   "Use 'plays' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+work\b',     r'\1 works',   "Use 'works' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+walk\b',     r'\1 walks',   "Use 'walks' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+talk\b',     r'\1 talks',   "Use 'talks' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+sit\b',      r'\1 sits',    "Use 'sits' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+stand\b',    r'\1 stands',  "Use 'stands' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+sleep\b',    r'\1 sleeps',  "Use 'sleeps' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+wake\b',     r'\1 wakes',   "Use 'wakes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+live\b',     r'\1 lives',   "Use 'lives' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+start\b',    r'\1 starts',  "Use 'starts' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+stop\b',     r'\1 stops',   "Use 'stops' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+help\b',     r'\1 helps',   "Use 'helps' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+call\b',     r'\1 calls',   "Use 'calls' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+know\b',     r'\1 knows',   "Use 'knows' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+think\b',    r'\1 thinks',  "Use 'thinks' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+want\b',     r'\1 wants',   "Use 'wants' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+need\b',     r'\1 needs',   "Use 'needs' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+like\b',     r'\1 likes',   "Use 'likes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+love\b',     r'\1 loves',   "Use 'loves' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+hate\b',     r'\1 hates',   "Use 'hates' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+feel\b',     r'\1 feels',   "Use 'feels' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+hear\b',     r'\1 hears',   "Use 'hears' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+say\b',      r'\1 says',    "Use 'says' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+see\b',      r'\1 sees',    "Use 'sees' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+keep\b',     r'\1 keeps',   "Use 'keeps' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+find\b',     r'\1 finds',   "Use 'finds' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+hold\b',     r'\1 holds',   "Use 'holds' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+put\b',      r'\1 puts',    "Use 'puts' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+get\b',      r'\1 gets',    "Use 'gets' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+begin\b',    r'\1 begins',  "Use 'begins' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+bring\b',    r'\1 brings',  "Use 'brings' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+buy\b',      r'\1 buys',    "Use 'buys' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+sell\b',     r'\1 sells',   "Use 'sells' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+learn\b',    r'\1 learns',  "Use 'learns' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+grow\b',     r'\1 grows',   "Use 'grows' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+throw\b',    r'\1 throws',  "Use 'throws' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+draw\b',     r'\1 draws',   "Use 'draws' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+wear\b',     r'\1 wears',   "Use 'wears' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+steal\b',    r'\1 steals',  "Use 'steals' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+tell\b',     r'\1 tells',   "Use 'tells' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+pay\b',      r'\1 pays',    "Use 'pays' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+leave\b',    r'\1 leaves',  "Use 'leaves' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+meet\b',     r'\1 meets',   "Use 'meets' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+send\b',     r'\1 sends',   "Use 'sends' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+spend\b',    r'\1 spends',  "Use 'spends' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+build\b',    r'\1 builds',  "Use 'builds' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+break\b',    r'\1 breaks',  "Use 'breaks' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+drive\b',    r'\1 drives',  "Use 'drives' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+ride\b',     r'\1 rides',   "Use 'rides' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+choose\b',   r'\1 chooses', "Use 'chooses' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+forget\b',   r'\1 forgets', "Use 'forgets' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+hide\b',     r'\1 hides',   "Use 'hides' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+bite\b',     r'\1 bites',   "Use 'bites' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+freeze\b',   r'\1 freezes', "Use 'freezes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+teach\b',    r'\1 teaches', "Use 'teaches' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+catch\b',    r'\1 catches', "Use 'catches' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+fly\b',      r'\1 flies',   "Use 'flies' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+study\b',    r'\1 studies', "Use 'studies' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+try\b',      r'\1 tries',   "Use 'tries' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+carry\b',    r'\1 carries', "Use 'carries' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+marry\b',    r'\1 marries', "Use 'marries' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+worry\b',    r'\1 worries', "Use 'worries' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+watch\b',    r'\1 watches', "Use 'watches' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+wash\b',     r'\1 washes',  "Use 'washes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+teach\b',    r'\1 teaches', "Use 'teaches' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+cross\b',    r'\1 crosses', "Use 'crosses' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+fix\b',      r'\1 fixes',   "Use 'fixes' with 'He/She/It'."),
+    (r'\b(He|She|It)\s+go\s+to\b',  r'\1 goes to', "Use 'goes to' with 'He/She/It'."),
+
+    # Subject doubling (redundant pronoun)
+    (r'\bMy\s+(names|name)\s+it\b',          None, "Remove 'it' — 'My name is' is correct, not 'My name it is'."),
+    (r'\bMy\s+names\s+(is|was)\b',          r'My name \1', "'My names' is plural — use 'My name' when referring to your own name."),
+    (r'\b(\w+)\s+(he|she|it)\s+(is|was|has|does)\b',
+     None, "Remove the extra pronoun — 'Subject + he/she/it' is redundant."),
+
+    # Copula (am/is/are/was/were) + base verb → should be -ing
+    (r'\b(am|is|are|was|were)\s+(go|come|do|make|take|have|eat|drink|read|write|speak|swim|sing|run|work|play|study|leave|arrive|sleep|talk|walk|sit|stand|drive|ride|fly|grow|throw|draw|bring|buy|sell|teach|learn|start|stop|help|call|tell|say|pay|live|die|try|stay|keep|find|hold|put|get|begin|break|catch|choose|forget|hide|bite|freeze|wash|watch|fix|cross|carry|marry|worry|enjoy|love|hate|like|want|need|know|think|believe|hope|expect|plan|promise|refuse|agree|decide|forbid|allow|let|make|hear|see|watch)\b',
+     None, "Use the -ing form after 'be' verbs (e.g. 'I am going' not 'I am go')."),
+
     # This/That (singular)
     (r'\b(This|That)\s+do\b',    r'\1 does',   "Use 'does' with singular subjects."),
     (r'\b(This|That)\s+have\b',  r'\1 has',    "Use 'has' with singular subjects."),
@@ -98,7 +190,7 @@ GRAMMAR_RULES = [
     # There is/are agreement
     (r'\bthere\s+is\s+(many|several|a\s+few|a\s+lot\s+of|lots\s+of|plenty\s+of|numerous|various)\b',
      None, "Use 'there are' with plural quantifiers."),
-    (r'\bthere\s+is\s+(people|children|men|women|teeth|feet|mice|geese|police|cattle)\b',
+    (r'\bthere\s+is\s+(people|children|men|women|teeth|feet|mice|geese|police|cattle|cars|dogs|cats|books|houses|trees|flowers|birds|fish|insects|animals|students|teachers|workers|doctors|nurses|engineers|lawyers|writers|artists|players|fans|members|friends|relatives|neighbors|parents|customers|clients|patients|passengers|drivers|riders|guests|visitors|tourists|strangers|enemies|soldiers|officers|leaders|managers|directors|owners|partners|colleagues|employees|bosses|chiefs|kings|queens|princes|princesses|heroes|villains|angels|devils|giants|dwarfs|elves|witches|wizards|dragons|monsters|ghosts|spirits|gods|goddesses|saints|prophets|apostles|disciples|believers|followers|critics|fans|supporters|opponents|rivals|allies|enemies|companies|organizations|groups|teams|committees|councils|boards|panels|commissions|delegations|delegates|representatives|ambassadors|ministers|senators|congressmen|governors|mayors|judges|attorneys|agents|spies|detectives|reporters|photographers|editors|publishers|authors|poets|musicians|singers|dancers|actors|actresses|directors|producers|writers|artists|painters|sculptors|architects|designers|engineers|technicians|mechanics|electricians|plumbers|carpenters|builders|farmers|gardeners|chefs|cooks|bakers|butchers|waiters|bartenders|servers|hosts|hostesses|cleaners|helpers|assistants|aides|secretaries|receptionists|telllers|cashiers|clerks|salespeople|merchants|traders|shopkeepers|vendors|suppliers|dealers|brokers|agents|managers|supervisors|coordinators|directors|presidents|vice\s+presidents|secretaries|treasurers|accountants|auditors|advisors|consultants|specialists|experts|analysts|scientists|researchers|professors|lecturers|instructors|tutors|coaches|trainers|mentors|guides|pilots|captains|commanders|chiefs|leaders|officials|authorities|figures|personalities|celebrities|stars|icons|legends|geniuses|prodigies|champions|winners|losers|players|competitors|contestants|participants|volunteers|donors|sponsors|patrons|benefactors|philanthropists|investors|shareholders|stakeholders|creditors|debtors|borrowers|lenders|owners|tenants|landlords|renters|occupants|residents|citizens|natives|foreigners|aliens|immigrants|refugees|settlers|colonists|pioneers|explorers|adventurers|travelers|tourists|visitors|passengers|commuters|pedestrians|cyclists|motorists|drivers|riders|hikers|campers|climbers|swimmers|runners|joggers|walkers|dancers|singers|musicians|artists|writers|readers|viewers|listeners|followers|subscribers|members|contributors|participants|attendees|spectators|audiences|crowds|groups|parties|classes|teams|crews|gangs|bands|orchestras|choirs|castes|tribes|clans|families|races|species|breeds|types|kinds|sorts|varieties|categories|classes|groups|sets|collections|assemblies|gatherings|meetings|conferences|conventions|rallies|protests|marches|parades|festivals|carnivals|concerts|shows|performances|exhibitions|displays|demonstrations|presentations|lectures|seminars|workshops|classes|courses|programs|sessions|lessons|tutorials|trainings|practices|exercises|drills|tests|exams|quizzes|surveys|polls|studies|researches|projects|assignments|tasks|jobs|chores|duties|responsibilities|roles|functions|positions|posts|offices|titles|ranks|grades|levels|stages|phases|steps|cycles|periods|eras|ages|epochs|generations|decades|centuries|millennia|years|months|weeks|days|hours|minutes|seconds|moments|instants|times|occasions|events|incidents|accidents|emergencies|crises|disasters|catastrophes|tragedies|dramas|comedies|stories|tales|legends|myths|fables|parables|allegories|metaphors|symbols|signs|indicators|markers|clues|hints|tips|suggestions|recommendations|proposals|plans|strategies|tactics|methods|techniques|approaches|systems|processes|procedures|operations|functions|activities|actions|steps|measures|initiatives|projects|programs|schemes|policies|rules|regulations|laws|statutes|ordinances|bylaws|codes|standards|principles|guidelines|directives|instructions|orders|commands|requests|demands|requirements|specifications|criteria|conditions|terms|provisions|clauses|sections|paragraphs|articles|chapters|pages|lines|words|letters|characters|symbols|numbers|figures|digits|values|amounts|quantities|totals|sums|averages|ratios|percentages|fractions|decimals|integers|wholes|halves|thirds|quarters|fifths|sixths|sevenths|eighths|ninths|tenths|millions|billions|trillions|dozens|hundreds|thousands)\b',
      None, "Use 'there are' with these plural nouns."),
     (r'\bthere\s+(are|were)\s+(a|an)\b',
      None, "Use 'there is/was' with singular nouns."),
@@ -186,6 +278,16 @@ GRAMMAR_RULES = [
     (r'\b(has|have|had)\s+threw\b',    r'\1 thrown',   "Use past participle: 'thrown'."),
     (r'\b(has|have|had)\s+drew\b',     r'\1 drawn',    "Use past participle: 'drawn'."),
 
+    # Have/Has/Had + base verb (should be past participle)
+    (r'\b(has|have|had)\s+(eat|drink|go|come|do|make|take|write|read|speak|break|swim|sing|begin|ring|sink|drive|ride|fly|grow|throw|draw|wear|steal|hide|bite|choose|freeze|forget|get|give|see|know|think|bring|catch|fight|teach|sell|tell|pay|find|hold|buy|build|send|spend|leave|meet|lose|mean|understand)\b',
+     None, "Use the past participle after 'have/has/had' (e.g. 'I have eaten' not 'I have eat')."),
+
+    # Bare past participle without auxiliary
+    (r'\b(I|You|He|She|It|We|They|The|This|That|These|Those)\s+(?:just|already|never|ever|always|still|recently|barely|hardly|scarcely|nearly|almost|finally|eventually|basically|simply|justly|rightly|wrongly|truly|merely|mostly|pretty|quite|rather|somewhat)\s+(seen|gone|been|done|taken|eaten|drunk|driven|ridden|flown|grown|thrown|drawn|broken|spoken|stolen|woken|frozen|chosen|hidden|bitten|forgotten|gotten|swum|sung|rung|sunk|begun)\b',
+     None, "Use an auxiliary verb (have/has) with past participles, or use simple past (e.g. 'I saw' not 'I seen')."),
+    (r'\b(I|You|He|She|It|We|They)\s+(seen|gone|been|done|taken|eaten|drunk|driven|ridden|flown|grown|thrown|drawn|broken|spoken|stolen|woken|frozen|chosen|hidden|bitten|forgotten|gotten|swum|sung|rung|sunk|begun)\b',
+     None, "Use an auxiliary verb (have/has) with past participles, or use simple past (e.g. 'I saw' not 'I seen')."),
+
     # ── Tense Consistency ──────────────────────────────────────
     (r'\b(buys|goes|does|has|says|makes|takes|comes|gives|eats|drinks|reads|writes|plays|works|talks|walks|runs|swims|sings|dances|watches|listens|studies|sleeps|sits|stands|teaches|learns|catches|flies|grows|throws|draws|wears|steals|brings|sells|tells|lives|starts|stops|helps|calls|knows|thinks|wants|needs|likes|loves|hates|looks|seems|feels|hears|sees|keeps|finds|holds|puts|gets|begins|becomes|happens|arrives|leaves|returns|changes|stays|follows|belongs|contains|remains|appears|offers|provides|receives|uses|requires|prefers|prepares|reports|believes|considers|describes|develops|discovers|discusses|expects|explains|improves|includes|introduces|mentions|observes|performs|presents|produces|promises|protects|recognizes|recommends|records|reflects|refuses|remembers|reminds|represents|reveals|shares|signs|solves|suggests|supports|survives|threatens|touches|trades|trains|treats|trusts|understands|visits|waits|wins|wishes|wonders)\b(?:\s+\w+){0,6}\s+yesterday\b',
      None, "Use past tense (not present) with 'yesterday'."),
@@ -204,6 +306,8 @@ GRAMMAR_RULES = [
     (r'\bwill\s+has\b',        "will have",   "Use base verb after 'will'."),
     (r'\bwill\s+is\b',         "will be",     "Use base verb after 'will'."),
 
+    (r'\b(can|must|should|could|would|may|might|will|shall)\s+\w*[bcdfghjklmnpqrtvwy]s\b',
+     None, "Use base verb after a modal (e.g. 'She can run' not 'She can runs')."),
     (r'\b(can|must|should|could|would|may|might)\s+goes\b',   r'\1 go',    "Use base verb after a modal."),
     (r'\b(can|must|should|could|would|may|might)\s+comes\b',  r'\1 come',  "Use base verb after a modal."),
     (r'\b(can|must|should|could|would|may|might)\s+works\b',  r'\1 work',  "Use base verb after a modal."),
@@ -227,6 +331,10 @@ GRAMMAR_RULES = [
     (r'\b(don\'t|doesn\'t|didn\'t)\s+goes\b',  r'\1 go',    "Use base verb after 'don't/doesn't/didn't'."),
     (r'\b(?:don\'t|doesn\'t|didn\'t)\s+(does|has|says|makes|takes|comes|gives|knows|eats|drinks|reads|writes|plays|works|talks|walks|runs|swims|sings|teaches|learns|catches|flies|grows|throws|draws|wears|steals|brings|sells|tells|lives|starts|stops|helps|calls|thinks|wants|needs|likes|loves|hates|looks|seems|feels|hears|sees|keeps|finds|holds|puts|gets|begins|happens|arrives|leaves|returns|changes|stays|follows|belongs|appears|offers|provides|receives|uses|requires|waits|wins|wishes|prefers|prepares|reports|believes|considers|describes|develops|discovers|discusses|expects|explains|includes|introduces|mentions|observes|performs|presents|produces|promises|protects|recognizes|recommends|records|reflects|refuses|remembers|reminds|represents|reveals|shares|signs|solves|suggests|supports|survives|threatens|touches|trades|trains|treats|trusts|understands|visits)\b',
      None, "Use base verb form after 'don't/doesn't/didn't'."),
+
+    # Did + past tense → use base form
+    (r'\b(?:did|didn\'t|did\s+not)\s+(went|saw|took|ate|drank|drove|rode|flew|grew|threw|drew|wore|stole|sang|swam|ran|came|gave|made|broke|spoke|wrote|read|began|rang|sank|froze|chose|woke|forgot|hid|bit|rode|drove|fought|caught|taught|brought|bought|sold|told|knew|thought|left|met|lost|paid|sent|spent|built|understood|stood|sat|slept|kept|found|held|hung|felt|meant)\b',
+     None, "Use the base verb form after 'did/didn't' (e.g. 'I went' → 'I did go' or just 'I went')."),
 
     # Need to / Dare to
     (r'\bneed\s+(go|come|do|be|make|take|have|see|get|give|find|tell|ask|try|leave|work|play|talk|walk|eat|drink|read|write|buy|sell|bring|teach|learn|start|stop|help|call|put|keep|let|begin|show|hear|think|know|want|look|seem|feel|say|use|pay|run|sit|stand|sleep|swim|sing|draw|fly|grow|throw|catch|fight|wear|steal|hide|forget|choose|freeze|wake|ride|drive|speak|break)\b',
@@ -255,6 +363,10 @@ GRAMMAR_RULES = [
     # ── Articles (a/an) ──────────────────────────────────────
     (r'\ba\s+(hour|honest|honour|heir|honor|heirloom|herb)\b', r'an \1', "Use 'an' before silent-h words."),
     (r'\ban\s+(university|union|unique|unit|usual|user|use|uniform|unicorn|unilateral|universal|unanimous|European|euphemism|eulogy|euthanasia)\b', r'a \1', "Use 'a' before words starting with a 'y' sound."),
+
+    # Singular countable noun without any article (e.g. "I like apple")
+    (r'\b(I|You|He|She|It|We|They)\s+(like|have|eat|love|buy|want|need|see|read|play|watch|use|drive|own|prefer|enjoy|hate|find|make|take|bring|sell|wear|choose|ride|write|call|wash|clean|cook|open|close|hold|lose)\s+(apple|banana|car|book|dog|cat|house|chair|table|phone|shirt|shoe|pen|cup|plate|bottle|bag|hat|ball|tree|flower|bird|fish|song|movie|game|word|page|letter|door|window|room|bed|desk|computer|garden|kitchen|store|shop|park|city|town|school|college|office|bank|hotel|restaurant|hospital|museum|theater|library|bus|train|plane|bike|horse|sheep|cow|pig|chicken|duck|goose|rose|lily|tulip|grape|orange|lemon|peach|pear|mango|tomato|potato|onion|carrot|cake|cookie|pie|burger|pizza|sandwich|salad|soup|drink|coffee|tea|juice|glass|cup|spoon|fork|knife|plate|bowl)\b',
+     None, "Use an article (a/an/the) or make it plural with countable singular nouns (e.g. 'I like apples' not 'I like apple')."),
 
     # ── Prepositions ──────────────────────────────────────────
     (r'\baccording\s+with\b',   "according to",  "Use 'according to'."),

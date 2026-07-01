@@ -5,10 +5,11 @@ from corrector import check_message
 from formatter import format_result
 from resources import BOOKS, WEBSITES, VIDEOS
 from dictionary import define
+from synonyms_antonyms import synonyms
 from tests import QUESTIONS, LEVEL_LABELS, get_results
 
 REPLY_KEYBOARD = ReplyKeyboardMarkup(
-    [["📖 Help", "📝 Example"], ["📚 Resources", "🔍 Define"], ["📝 Tests"]],
+    [["📖 Help", "📝 Example"], ["📚 Resources", "🔍 Define"], ["🔄 Synonyms", "📝 Tests"]],
     resize_keyboard=True
 )
 
@@ -20,7 +21,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     )
 
 def _help_text() -> str:
-    return "📖 Just send English text.\n📝 Example — see a sample\n📚 Resources — grammar learning books, websites & videos\n🔍 Define — Press the button and send any word to see its definition\n📝 Tests — Take a level test (A1–C1) to check your English"
+    return "📖 Just send English text.\n📝 Example — see a sample\n📚 Resources — grammar learning books, websites & videos\n🔍 Define — Press the button and send any word to see its definition\n🔄 Synonyms — Press the button and send any word to see its synonyms and antonyms\n📝 Tests — Take a level test (A1–C1) to check your English"
 
 def _resources_text() -> str:
     msg = "📚 *Grammar Learning Resources*\n\n"
@@ -64,6 +65,12 @@ async def define_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     context.user_data["awaiting_definition"] = True
     await update.message.reply_text(
         "🔍 Send me any English word and I'll look it up for you."
+    )
+
+async def synonyms_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data["awaiting_synonyms"] = True
+    await update.message.reply_text(
+        "🔄 Send me any English word and I'll find its synonyms and antonyms."
     )
 
 async def tests_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -139,6 +146,7 @@ BUTTON_ROUTES = {
     "📝 Example": example_command,
     "📚 Resources": resources_command,
     "🔍 Define": define_command,
+    "🔄 Synonyms": synonyms_command,
     "📝 Tests": tests_command,
 }
 
@@ -152,6 +160,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     if context.user_data.pop("awaiting_definition", False):
         await update.message.reply_text("🔍 Looking up...")
         result = await define(text)
+        await update.message.reply_text(result, parse_mode='Markdown')
+        return
+    
+    if context.user_data.pop("awaiting_synonyms", False):
+        await update.message.reply_text("🔄 Searching...")
+        result = await synonyms(text)
         await update.message.reply_text(result, parse_mode='Markdown')
         return
     
