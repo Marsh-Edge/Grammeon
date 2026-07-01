@@ -3,9 +3,10 @@ from telegram.ext import ContextTypes
 from corrector import check_message
 from formatter import format_result
 from resources import BOOKS, WEBSITES, VIDEOS
+from dictionary import define
 
 REPLY_KEYBOARD = ReplyKeyboardMarkup(
-    [["📖 Help", "📝 Example"], ["📚 Resources"]],
+    [["📖 Help", "📝 Example"], ["📚 Resources", "🔍 Define"]],
     resize_keyboard=True
 )
 
@@ -57,10 +58,17 @@ async def example_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
     result = check_message("I goed to school and learned many informations.")
     await msg.edit_text(format_result(result), parse_mode='Markdown')
 
+async def define_command(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    context.user_data["awaiting_definition"] = True
+    await update.message.reply_text(
+        "🔍 Send me any English word and I'll look it up for you."
+    )
+
 BUTTON_ROUTES = {
     "📖 Help": help_command,
     "📝 Example": example_command,
     "📚 Resources": resources_command,
+    "🔍 Define": define_command,
 }
 
 async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
@@ -68,6 +76,12 @@ async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE):
     
     if text in BUTTON_ROUTES:
         await BUTTON_ROUTES[text](update, context)
+        return
+    
+    if context.user_data.pop("awaiting_definition", False):
+        await update.message.reply_text("🔍 Looking up...")
+        result = await define(text)
+        await update.message.reply_text(result, parse_mode='Markdown')
         return
     
     if len(text) < 3:
