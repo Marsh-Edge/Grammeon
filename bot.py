@@ -1,8 +1,8 @@
 import os
 import logging
 from dotenv import load_dotenv
-from telegram.ext import Application, CommandHandler, MessageHandler, filters
-from handlers import start, example_command, help_command, resources_command, handle_message
+from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters
+from handlers import start, example_command, help_command, resources_command, test_callback, handle_message
 
 load_dotenv()
 
@@ -24,6 +24,7 @@ def main():
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("example", example_command))
     app.add_handler(CommandHandler("resources", resources_command))
+    app.add_handler(CallbackQueryHandler(test_callback, pattern="^test_"))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
     
     logging.info("🤖 Grammeon Bot is starting...")
