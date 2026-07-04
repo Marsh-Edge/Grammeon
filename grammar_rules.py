@@ -1,9 +1,3 @@
-"""
-Grammar rules for corrector.py
-Each rule: (pattern, fix, message)
-fix=None means report only, no auto-correct
-"""
-
 GRAMMAR_RULES = [
 
     # ── Missing Apostrophe in Contractions ────────────────────
@@ -25,8 +19,6 @@ GRAMMAR_RULES = [
     (r'\bmustnt\b',  "mustn't",  "Missing apostrophe in 'mustn't'."),
     (r'\bmightnt\b', "mightn't", "Missing apostrophe in 'mightn't'."),
     (r'\bdidnt\b',   "didn't",   "Missing apostrophe in 'didn't'."),
-    (r'\bIm\b',      "I'm",      "Missing apostrophe in 'I'm'."),
-    (r'\biam\b',     "I am",     "'iam' is not a word — use 'I am' (two words)."),
 
     # ── Verb Form After 'to' (Infinitive) ──────────────────────
     (r'\bto\s+has\b',    "to have",   "Use base verb form after 'to'."),
@@ -158,9 +150,6 @@ GRAMMAR_RULES = [
     # Subject doubling (redundant pronoun)
     (r'\bMy\s+(names|name)\s+it\b',          None, "Remove 'it' — 'My name is' is correct, not 'My name it is'."),
     (r'\bMy\s+names\s+(is|was)\b',          r'My name \1', "'My names' is plural — use 'My name' when referring to your own name."),
-    (r'\bMy\s+names\b',                     None,           "Use 'my name' (singular) when referring to your name."),
-    (r'\bMy\s+name\s+(?!is\b|was\b|it\b)\s*([A-Z][a-zA-Z]+)\b',
-     None, "Use 'My name is ...' — missing verb 'is'."),
     (r'\b(\w+)\s+(he|she|it)\s+(is|was|has|does)\b',
      None, "Remove the extra pronoun — 'Subject + he/she/it' is redundant."),
 
@@ -410,10 +399,6 @@ GRAMMAR_RULES = [
     # Singular countable noun without any article (e.g. "I like apple")
     (r'\b(I|You|He|She|It|We|They)\s+(like|have|eat|love|buy|want|need|see|read|play|watch|use|drive|own|prefer|enjoy|hate|find|make|take|bring|sell|wear|choose|ride|write|call|wash|clean|cook|open|close|hold|lose)\s+(apple|banana|car|book|dog|cat|house|chair|table|phone|shirt|shoe|pen|cup|plate|bottle|bag|hat|ball|tree|flower|bird|fish|song|movie|game|word|page|letter|door|window|room|bed|desk|computer|garden|kitchen|store|shop|park|city|town|school|college|office|bank|hotel|restaurant|hospital|museum|theater|library|bus|train|plane|bike|horse|sheep|cow|pig|chicken|duck|goose|rose|lily|tulip|grape|orange|lemon|peach|pear|mango|tomato|potato|onion|carrot|cake|cookie|pie|burger|pizza|sandwich|salad|soup|drink|coffee|tea|juice|glass|cup|spoon|fork|knife|plate|bowl)\b',
      None, "Use an article (a/an/the) or make it plural with countable singular nouns (e.g. 'I like apples' not 'I like apple')."),
-
-    # Past-tense verbs + missing article
-    (r'\b(I|You|He|She|It|We|They)\s+(liked|had|ate|bought|wanted|needed|saw|played|watched|used|enjoyed|hated|found|made|took|brought|wore|rode|called|washed|cooked|held|lost|drove|wrote|chose|opened|closed|cleaned|studied|stopped|started|helped|learned|asked|waited|visited|picked|moved|touched|kicked|pulled|pushed|raised|reached|realized|received|remembered|returned|saved|showed|signed|smiled|solved|sounded|stayed|tested|thanked|trained|turned|used|walked|watched|worked|worried)\s+(apple|banana|car|book|dog|cat|house|chair|table|phone|shirt|shoe|pen|cup|plate|bottle|bag|hat|ball|tree|flower|bird|fish|song|movie|game|word|page|letter|door|window|room|bed|desk|computer|garden|kitchen|store|shop|park|city|town|school|college|office|bank|hotel|restaurant|hospital|museum|theater|library|bus|train|plane|bike|horse|sheep|cow|pig|chicken|duck|goose|rose|lily|tulip|grape|orange|lemon|peach|pear|mango|tomato|potato|onion|carrot|cake|cookie|pie|burger|pizza|sandwich|salad|soup|drink|coffee|tea|juice|glass|cup|spoon|fork|knife|plate|bowl)\b',
-     None, "Use an article (a/an/the) or make it plural with countable singular nouns (e.g. 'I liked apples' not 'I liked apple')."),
 
     # ── Prepositions ──────────────────────────────────────────
     (r'\baccording\s+with\b',   "according to",  "Use 'according to'."),
