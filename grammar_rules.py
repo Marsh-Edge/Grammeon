@@ -25,6 +25,8 @@ GRAMMAR_RULES = [
     (r'\bmustnt\b',  "mustn't",  "Missing apostrophe in 'mustn't'."),
     (r'\bmightnt\b', "mightn't", "Missing apostrophe in 'mightn't'."),
     (r'\bdidnt\b',   "didn't",   "Missing apostrophe in 'didn't'."),
+    (r'\bIm\b',      "I'm",      "Missing apostrophe in 'I'm'."),
+    (r'\biam\b',     "I am",     "'iam' is not a word — use 'I am' (two words)."),
 
     # ── Verb Form After 'to' (Infinitive) ──────────────────────
     (r'\bto\s+has\b',    "to have",   "Use base verb form after 'to'."),
@@ -32,7 +34,7 @@ GRAMMAR_RULES = [
     (r'\bto\s+goes\b',   "to go",     "Use base verb form after 'to'."),
     (r'\bto\s+had\b',    "to have",   "Use base verb form after 'to'."),
     (r'\bto\s+did\b',    "to do",     "Use base verb form after 'to'."),
-    (r'\bto\s+(went|said|made|took|came|gave|knew|thought|bought|sold|taught|caught|fought|told|spoke|broke|woke|drove|rode|wrote|sang|drank|swam|ran|ate|sat|stood|built|sent|spent|left|met|lost|meant|paid|forgot|hid|bit|chose|froze|wore|stole|flew|grew|threw|drew|understood)\b',
+    (r'\bto\s+(went|said|made|took|came|gave|knew|thought|bought|sold|taught|caught|fought|told|spoke|broke|woke|drove|rode|wrote|sang|drank|swam|ran|ate|sat|stood|built|sent|spent|left|met|lost|meant|paid|forgot|hid|bit|chose|froze|wore|stole|flew|grew|threw|drew|understood|slept|kept|felt|hurt|hit|cost|let|put|set|cut|shut|spread|cast|burst|bent|bled|blew|bred|dealt|dug|fed|hung|held|knelt|laid|led|lent|lit|sank|shrank|slid|smelt|spat|split|stuck|struck|strove|swept|swore|swung|tore|won|wound|withdrew)\b',
      None, "Use base verb form after 'to' (infinitive), not past tense."),
 
     # ── Subject-Verb Agreement ────────────────────────────────
@@ -156,6 +158,9 @@ GRAMMAR_RULES = [
     # Subject doubling (redundant pronoun)
     (r'\bMy\s+(names|name)\s+it\b',          None, "Remove 'it' — 'My name is' is correct, not 'My name it is'."),
     (r'\bMy\s+names\s+(is|was)\b',          r'My name \1', "'My names' is plural — use 'My name' when referring to your own name."),
+    (r'\bMy\s+names\b',                     None,           "Use 'my name' (singular) when referring to your name."),
+    (r'\bMy\s+name\s+(?!is\b|was\b|it\b)\s*([A-Z][a-zA-Z]+)\b',
+     None, "Use 'My name is ...' — missing verb 'is'."),
     (r'\b(\w+)\s+(he|she|it)\s+(is|was|has|does)\b',
      None, "Remove the extra pronoun — 'Subject + he/she/it' is redundant."),
 
@@ -194,6 +199,8 @@ GRAMMAR_RULES = [
      None, "Use 'there are' with these plural nouns."),
     (r'\bthere\s+(are|were)\s+(a|an)\b',
      None, "Use 'there is/was' with singular nouns."),
+    (r'\bthere\s+is\s+(these|those)\b', None, "Use 'there are' with 'these/those' (plural)."),
+    (r'\bthere\s+was\s+(these|those)\b', None, "Use 'there were' with 'these/those' (plural)."),
 
     # I/You/We/They + 3rd person verb form (common verbs)
     (r'\b(I|You|We|They)\s+(goes|does|has|says|makes|takes|comes|gives|knows|thinks|wants|needs|likes|loves|works|plays|talks|walks|runs|eats|drinks|reads|writes|lives|starts|stops|helps|calls|buys|sells|brings|teaches|learns|catches|fights|flies|grows|throws|draws|wears|steals|swims|sings|begins|rings|sinks|freezes|chooses|wakes|forgets|gets|hides|bites|rides|drives|speaks|breaks)\b',
@@ -231,6 +238,7 @@ GRAMMAR_RULES = [
     (r'\b(I|He|She|It|You|We|They)\s+growed\b',   r'\1 grew',     "'growed' is not valid — past tense of 'grow' is 'grew'."),
     (r'\b(I|He|She|It|You|We|They)\s+throwed\b',  r'\1 threw',    "'throwed' is not valid — past tense of 'throw' is 'threw'."),
     (r'\b(I|He|She|It|You|We|They)\s+drowed\b',   r'\1 drew',     "'drowed' is not valid — past tense of 'draw' is 'drew'."),
+    (r'\b(I|He|She|It|You|We|They)\s+drawed\b',   r'\1 drew',     "'drawed' is not valid — past tense of 'draw' is 'drew'."),
     (r'\b(I|He|She|It|You|We|They)\s+weared\b',   r'\1 wore',     "'weared' is not valid — past tense of 'wear' is 'wore'."),
     (r'\b(I|He|She|It|You|We|They)\s+stealed\b',  r'\1 stole',    "'stealed' is not valid — past tense of 'steal' is 'stole'."),
     (r'\b(I|He|She|It|You|We|They)\s+swimmed\b',  r'\1 swam',     "'swimmed' is not valid — past tense of 'swim' is 'swam'."),
@@ -246,6 +254,29 @@ GRAMMAR_RULES = [
     (r'\b(I|He|She|It|You|We|They)\s+forgeted\b', r'\1 forgot',   "'forgeted' is not valid — past tense of 'forget' is 'forgot'."),
     (r'\b(I|He|She|It|You|We|They)\s+geted\b',    r'\1 got',      "'geted' is not valid — past tense of 'get' is 'got'."),
     (r'\b(I|He|She|It|You|We|They)\s+hided\b',    r'\1 hid',      "'hided' is not valid — past tense of 'hide' is 'hid'."),
+    (r'\b(I|He|She|It|You|We|They)\s+eated\b',    r'\1 ate',      "'eated' is not valid — past tense of 'eat' is 'ate'."),
+    (r'\b(I|He|She|It|You|We|They)\s+sleeped\b',  r'\1 slept',    "'sleeped' is not valid — past tense of 'sleep' is 'slept'."),
+    (r'\b(I|He|She|It|You|We|They)\s+feeled\b',   r'\1 felt',     "'feeled' is not valid — past tense of 'feel' is 'felt'."),
+    (r'\b(I|He|She|It|You|We|They)\s+leaved\b',   r'\1 left',     "'leaved' is not valid — past tense of 'leave' is 'left'."),
+    (r'\b(I|He|She|It|You|We|They)\s+meeted\b',   r'\1 met',      "'meeted' is not valid — past tense of 'meet' is 'met'."),
+    (r'\b(I|He|She|It|You|We|They)\s+standed\b',  r'\1 stood',    "'standed' is not valid — past tense of 'stand' is 'stood'."),
+    (r'\b(I|He|She|It|You|We|They)\s+sitted\b',   r'\1 sat',      "'sitted' is not valid — past tense of 'sit' is 'sat'."),
+    (r'\b(I|He|She|It|You|We|They)\s+hurted\b',   r'\1 hurt',     "'hurted' is not valid — past tense of 'hurt' is 'hurt'."),
+    (r'\b(I|He|She|It|You|We|They)\s+hitted\b',   r'\1 hit',      "'hitted' is not valid — past tense of 'hit' is 'hit'."),
+    (r'\b(I|He|She|It|You|We|They)\s+puted\b',    None,           "'puted' is not valid — past tense of 'put' is 'put'."),
+    (r'\b(I|He|She|It|You|We|They)\s+costed\b',   None,           "'costed' is not valid — past tense of 'cost' is 'cost'."),
+    (r'\b(I|He|She|It|You|We|They)\s+meaned\b',   r'\1 meant',    "'meaned' is not valid — past tense of 'mean' is 'meant'."),
+    (r'\b(I|He|She|It|You|We|They)\s+keeped\b',   r'\1 kept',     "'keeped' is not valid — past tense of 'keep' is 'kept'."),
+    (r'\b(I|He|She|It|You|We|They)\s+losed\b',    r'\1 lost',     "'losed' is not valid — past tense of 'lose' is 'lost'."),
+    (r'\b(I|He|She|It|You|We|They)\s+shaked\b',   r'\1 shook',    "'shaked' is not valid — past tense of 'shake' is 'shook'."),
+    (r'\b(I|He|She|It|You|We|They)\s+forgived\b', r'\1 forgave',  "'forgived' is not valid — past tense of 'forgive' is 'forgave'."),
+    (r'\b(I|He|She|It|You|We|They)\s+builded\b',  r'\1 built',    "'builded' is not valid — past tense of 'build' is 'built'."),
+    (r'\b(I|He|She|It|You|We|They)\s+sended\b',   r'\1 sent',     "'sended' is not valid — past tense of 'send' is 'sent'."),
+    (r'\b(I|He|She|It|You|We|They)\s+spended\b',  r'\1 spent',    "'spended' is not valid — past tense of 'spend' is 'spent'."),
+    (r'\b(I|He|She|It|You|We|They)\s+winned\b',   r'\1 won',      "'winned' is not valid — past tense of 'win' is 'won'."),
+    (r'\b(I|He|She|It|You|We|They)\s+bited\b',    r'\1 bit',      "'bited' is not valid — past tense of 'bite' is 'bit'."),
+    (r'\b(I|He|She|It|You|We|They)\s+shined\b',   r'\1 shone',    "'shined' is not valid — past tense of 'shine' is 'shone'."),
+    (r'\b(I|He|She|It|You|We|They)\s+payed\b',    r'\1 paid',     "'payed' is not valid — past tense of 'pay' is 'paid'."),
 
     # ── Past Participle ───────────────────────────────────────
     (r'\b(has|have|had)\s+went\b',     r'\1 gone',     "Use past participle: 'gone'."),
@@ -277,9 +308,21 @@ GRAMMAR_RULES = [
     (r'\b(has|have|had)\s+grew\b',     r'\1 grown',    "Use past participle: 'grown'."),
     (r'\b(has|have|had)\s+threw\b',    r'\1 thrown',   "Use past participle: 'thrown'."),
     (r'\b(has|have|had)\s+drew\b',     r'\1 drawn',    "Use past participle: 'drawn'."),
+    (r'\b(has|have|had)\s+slept\b',    r'\1 slept',    "Use past participle: 'slept' (same as past tense)."),
+    (r'\b(has|have|had)\s+kept\b',     r'\1 kept',     "Use past participle: 'kept' (same as past tense)."),
+    (r'\b(has|have|had)\s+felt\b',     r'\1 felt',     "Use past participle: 'felt' (same as past tense)."),
+    (r'\b(has|have|had)\s+left\b',     r'\1 left',     "Use past participle: 'left' (same as past tense)."),
+    (r'\b(has|have|had)\s+met\b',      r'\1 met',      "Use past participle: 'met' (same as past tense)."),
+    (r'\b(has|have|had)\s+stood\b',    r'\1 stood',    "Use past participle: 'stood' (same as past tense)."),
+    (r'\b(has|have|had)\s+shed\b',     r'\1 shed',     "Use past participle: 'shed' (same as past tense)."),
+    (r'\b(has|have|had)\s+shook\b',    r'\1 shaken',   "Use past participle: 'shaken'."),
+    (r'\b(has|have|had)\s+forgave\b',  r'\1 forgiven', "Use past participle: 'forgiven'."),
+    (r'\b(has|have|had)\s+beat\b',     r'\1 beaten',   "Use past participle: 'beaten'."),
+    (r'\b(has|have|had)\s+shone\b',    r'\1 shone',    "Use past participle: 'shone' (same as past tense)."),
+    (r'\b(has|have|had)\s+hung\b',     r'\1 hung',     "Use past participle: 'hung' (same as past tense)."),
 
     # Have/Has/Had + base verb (should be past participle)
-    (r'\b(has|have|had)\s+(eat|drink|go|come|do|make|take|write|read|speak|break|swim|sing|begin|ring|sink|drive|ride|fly|grow|throw|draw|wear|steal|hide|bite|choose|freeze|forget|get|give|see|know|think|bring|catch|fight|teach|sell|tell|pay|find|hold|buy|build|send|spend|leave|meet|lose|mean|understand)\b',
+    (r'\b(has|have|had)\s+(eat|drink|go|come|do|make|take|write|read|speak|break|swim|sing|begin|ring|sink|drive|ride|fly|grow|throw|draw|wear|steal|hide|bite|choose|freeze|forget|get|give|see|know|think|bring|catch|fight|teach|sell|tell|pay|find|hold|buy|build|send|spend|leave|meet|lose|mean|understand|forgive|forbid|prove|shake|beat|seek|shoot|show|shut|sit|sleep|stand|stick|strike|strive|swear|sweep|swing|tear|wake|win|wind|withdraw|dig|feed|feel|hang|hold|kneel|lay|lead|lend|lie|light|ride|rise|seek|shine|shrink|slay|slide|smell|sow|spin|spit|split|spoil|spread|spring|sting|stink|strew|stride|string|strip|strive|stun|sweat|swell|swing|swear|tear|wake|weave|weep|wet)\b',
      None, "Use the past participle after 'have/has/had' (e.g. 'I have eaten' not 'I have eat')."),
 
     # Bare past participle without auxiliary
@@ -306,7 +349,7 @@ GRAMMAR_RULES = [
     (r'\bwill\s+has\b',        "will have",   "Use base verb after 'will'."),
     (r'\bwill\s+is\b',         "will be",     "Use base verb after 'will'."),
 
-    (r'\b(can|must|should|could|would|may|might|will|shall)\s+\w*[bcdfghjklmnpqrtvwy]s\b',
+    (r'\b(can|must|should|could|would|may|might|will|shall)\s+\w*[a-z]s\b',
      None, "Use base verb after a modal (e.g. 'She can run' not 'She can runs')."),
     (r'\b(can|must|should|could|would|may|might)\s+goes\b',   r'\1 go',    "Use base verb after a modal."),
     (r'\b(can|must|should|could|would|may|might)\s+comes\b',  r'\1 come',  "Use base verb after a modal."),
@@ -353,8 +396,8 @@ GRAMMAR_RULES = [
     (r'\bmany\s+homeworks\b',    "much homework",    "'homework' is uncountable — use 'much homework'."),
     (r'\bmany\s+researches\b',   "much research",    "'research' is uncountable — use 'much research'."),
     (r'\bmany\s+progresses\b',   "much progress",    "'progress' is uncountable — use 'much progress'."),
-    (r'\bmany\s+informations?\b', "information",     "'information' has no plural form."),
-    (r'\ban?\s+advices?\b',      "advice",           "'advice' has no plural form."),
+    (r'\bmany\s+informations\b', None,     "'information' has no plural form — use 'much information'."),
+    (r'\ban?\s+advices?\b',      None,               "'advice' is uncountable — use 'some advice' or just 'advice'."),
 
     # Much + countable noun
     (r'\bmuch\s+(books|people|students|cars|houses|chairs|tables|days|weeks|years|hours|minutes|dollars|euros|children|men|women|animals|trees|flowers|bottles|cups|plates|shirts|shoes|words|pages|chapters|lessons|pounds|euros|dollars)\b',
@@ -367,6 +410,10 @@ GRAMMAR_RULES = [
     # Singular countable noun without any article (e.g. "I like apple")
     (r'\b(I|You|He|She|It|We|They)\s+(like|have|eat|love|buy|want|need|see|read|play|watch|use|drive|own|prefer|enjoy|hate|find|make|take|bring|sell|wear|choose|ride|write|call|wash|clean|cook|open|close|hold|lose)\s+(apple|banana|car|book|dog|cat|house|chair|table|phone|shirt|shoe|pen|cup|plate|bottle|bag|hat|ball|tree|flower|bird|fish|song|movie|game|word|page|letter|door|window|room|bed|desk|computer|garden|kitchen|store|shop|park|city|town|school|college|office|bank|hotel|restaurant|hospital|museum|theater|library|bus|train|plane|bike|horse|sheep|cow|pig|chicken|duck|goose|rose|lily|tulip|grape|orange|lemon|peach|pear|mango|tomato|potato|onion|carrot|cake|cookie|pie|burger|pizza|sandwich|salad|soup|drink|coffee|tea|juice|glass|cup|spoon|fork|knife|plate|bowl)\b',
      None, "Use an article (a/an/the) or make it plural with countable singular nouns (e.g. 'I like apples' not 'I like apple')."),
+
+    # Past-tense verbs + missing article
+    (r'\b(I|You|He|She|It|We|They)\s+(liked|had|ate|bought|wanted|needed|saw|played|watched|used|enjoyed|hated|found|made|took|brought|wore|rode|called|washed|cooked|held|lost|drove|wrote|chose|opened|closed|cleaned|studied|stopped|started|helped|learned|asked|waited|visited|picked|moved|touched|kicked|pulled|pushed|raised|reached|realized|received|remembered|returned|saved|showed|signed|smiled|solved|sounded|stayed|tested|thanked|trained|turned|used|walked|watched|worked|worried)\s+(apple|banana|car|book|dog|cat|house|chair|table|phone|shirt|shoe|pen|cup|plate|bottle|bag|hat|ball|tree|flower|bird|fish|song|movie|game|word|page|letter|door|window|room|bed|desk|computer|garden|kitchen|store|shop|park|city|town|school|college|office|bank|hotel|restaurant|hospital|museum|theater|library|bus|train|plane|bike|horse|sheep|cow|pig|chicken|duck|goose|rose|lily|tulip|grape|orange|lemon|peach|pear|mango|tomato|potato|onion|carrot|cake|cookie|pie|burger|pizza|sandwich|salad|soup|drink|coffee|tea|juice|glass|cup|spoon|fork|knife|plate|bowl)\b',
+     None, "Use an article (a/an/the) or make it plural with countable singular nouns (e.g. 'I liked apples' not 'I liked apple')."),
 
     # ── Prepositions ──────────────────────────────────────────
     (r'\baccording\s+with\b',   "according to",  "Use 'according to'."),
@@ -449,6 +496,7 @@ GRAMMAR_RULES = [
     (r'\binfact\b',           "in fact",     "Use 'in fact' (two words)."),
     (r'\bincharge\b',         "in charge",   "Use 'in charge' (two words)."),
     (r'\bapart\s+of\b',       None,          "Use 'a part of' or 'apart from'."),
+    (r'\bcan\s+not\b',        "cannot",      "Use 'cannot' (one word) in formal English."),
 
     # ── Comparatives / Superlatives ───────────────────────────
     (r'\bmore\s+(better|worse|bigger|smaller|older|younger|faster|slower|richer|poorer|higher|lower|greater|lesser|hotter|colder|warmer|cooler|darker|brighter|stronger|weaker|taller|shorter|longer|wider|deeper|earlier|later|simpler|happier|prettier|easier|harder|busier|funnier|angrier|friendlier|heavier|healthier|luckier|nicer|sadder|tastier|wealthier|calmer|quieter|cheaper|cleaner|clearer|closer|fresher|fuller|gentler|kinder|larger|looser|narrower|neater|newer|older|plainer|politer|quieter|rarer|safer|sharper|shorter|smarter|softer|steeper|stricter|stronger|sweeter|taller|thicker|thinner|tighter|tougher|warmer|weaker|wider|wiser)\b',
@@ -459,6 +507,8 @@ GRAMMAR_RULES = [
     # ── Subjunctive Mood ─────────────────────────────────────
     (r'\bif\s+(I|he|she|it)\s+was\s+(you|here|there|taller|faster|smarter|richer|older|younger|better|worse|bigger|smaller|stronger|weaker|faster|slower|nicer|kinder|richer|poorer|braver|calmer|happier|luckier|healthier|wealthier)\b',
      None, "Use 'were' in the subjunctive mood (e.g. 'if I were you')."),
+    (r'\bwish\s+(I|he|she|it)\s+was\b', None, "Use 'were' after 'wish' in the subjunctive mood (e.g. 'I wish I were')."),
+    (r'\b(as\s+though|as\s+if)\s+(I|he|she|it)\s+was\b', None, "Use 'were' after 'as though/as if' in the subjunctive mood."),
 
     # ── Less vs Fewer ─────────────────────────────────────────
     (r'\bless\s+(people|children|men|women|students|workers|members|participants|customers|users|readers|viewers|listeners|patients|passengers|drivers|residents|citizens|families|animals|plants|trees|flowers|birds|fish|insects|days|hours|minutes|seconds|weeks|years|months|times|occasions|instances|cases|examples|reasons|factors|issues|problems|questions|answers|items|products|goods|services|words|pages|books|articles|stories|reports|emails|messages|letters|notes|files|documents|images|photos|videos|songs|movies|shows|games|jobs|tasks|projects|goals|ideas|thoughts|plans|decisions|chances|opportunities|choices|options|alternatives|countries|cities|towns|villages|shops|restaurants|hotels|schools|hospitals|banks|parks|roads|streets)\b',
