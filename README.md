@@ -18,15 +18,17 @@ Key capabilities:
 
 ## Table of contents
 
-- [Features](#features)
-- [How it works](#how-it-works)
-- [Project structure](#project-structure)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Commands](#commands)
-- [Testing](#testing)
-- [License](#license)
-- [Contributing](#contributing)
+- [Grammeon](#grammeon)
+  - [Table of contents](#table-of-contents)
+  - [Features](#features)
+  - [How it works](#how-it-works)
+  - [Project structure](#project-structure)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Commands](#commands)
+  - [Testing](#testing)
+  - [License](#license)
+  - [Contributing](#contributing)
 
 ## Features
 
