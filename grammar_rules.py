@@ -19,6 +19,9 @@ GRAMMAR_RULES = [
     (r'\bmustnt\b',  "mustn't",  "Missing apostrophe in 'mustn't'."),
     (r'\bmightnt\b', "mightn't", "Missing apostrophe in 'mightn't'."),
     (r'\bdidnt\b',   "didn't",   "Missing apostrophe in 'didn't'."),
+    (r'\bshant\b',   "shan't",   "Missing apostrophe in 'shan't'."),
+    (r'\bneednt\b',  "needn't",  "Missing apostrophe in 'needn't'."),
+    (r'\bdarent\b',  "daren't",  "Missing apostrophe in 'daren't'."),
 
     # ── Verb Form After 'to' (Infinitive) ──────────────────────
     (r'\bto\s+has\b',    "to have",   "Use base verb form after 'to'."),
@@ -43,18 +46,21 @@ GRAMMAR_RULES = [
     (r'\bYou\s+has\b',         "You have",   "Use 'have' with 'You'."),
     (r'\bYou\s+is\b',          "You are",    "Use 'are' with 'You'."),
     (r'\bYou\s+was\b',         "You were",   "Use 'were' with 'You'."),
+    (r'\bYou\s+am\b',          "You are",    "Use 'are' with 'You'."),
 
     # First person plural (We)
     (r'\bWe\s+does\b',         "We do",      "Use 'do' with 'We'."),
     (r'\bWe\s+has\b',          "We have",    "Use 'have' with 'We'."),
     (r'\bWe\s+is\b',           "We are",     "Use 'are' with 'We'."),
     (r'\bWe\s+was\b',          "We were",    "Use 'were' with 'We'."),
+    (r'\bWe\s+am\b',           "We are",     "Use 'are' with 'We'."),
 
     # Third person plural (They)
     (r'\bThey\s+does\b',       "They do",    "Use 'do' with 'They'."),
     (r'\bThey\s+has\b',        "They have",  "Use 'have' with 'They'."),
     (r'\bThey\s+is\b',         "They are",   "Use 'are' with 'They'."),
     (r'\bThey\s+was\b',        "They were",  "Use 'were' with 'They'."),
+    (r'\bThey\s+am\b',         "They are",   "Use 'are' with 'They'."),
     (r'\b(They|We|You)\s+doesn\'t\b',  r"\1 don't",   "Use 'don't' with 'They/We/You'."),
 
     # Third person singular (He/She/It)
@@ -63,7 +69,9 @@ GRAMMAR_RULES = [
     (r'\b(He|She|It)\s+are\b',   r'\1 is',     "Use 'is' with 'He/She/It'."),
     (r'\b(He|She|It)\s+am\b',    r'\1 is',     "Use 'is' with 'He/She/It'."),
     (r'\b(He|She|It)\s+don\'t\b',r"\1 doesn't","Use 'doesn't' with 'He/She/It'."),
-    (r'\b(He|She|It)\s+were\b',  r'\1 was',    "Use 'was' with 'He/She/It' in indicative mood."),
+    # He/She/It + were — only in non-subjunctive contexts
+    (r'(?<!\bif\s)(?<!\bwish\s)(?<!\bthough\s)(?<!\bas\s)\b(He|She|It)\s+were\b',
+     r'\1 was', "Use 'was' with 'He/She/It' in indicative mood."),
 
     # He/She/It + base verb (missing 3rd person -s)
     (r'\b(He|She|It)\s+go\b',       r'\1 goes',    "Use 'goes' with 'He/She/It'."),
@@ -142,7 +150,6 @@ GRAMMAR_RULES = [
     (r'\b(He|She|It)\s+worry\b',    r'\1 worries', "Use 'worries' with 'He/She/It'."),
     (r'\b(He|She|It)\s+watch\b',    r'\1 watches', "Use 'watches' with 'He/She/It'."),
     (r'\b(He|She|It)\s+wash\b',     r'\1 washes',  "Use 'washes' with 'He/She/It'."),
-    (r'\b(He|She|It)\s+teach\b',    r'\1 teaches', "Use 'teaches' with 'He/She/It'."),
     (r'\b(He|She|It)\s+cross\b',    r'\1 crosses', "Use 'crosses' with 'He/She/It'."),
     (r'\b(He|She|It)\s+fix\b',      r'\1 fixes',   "Use 'fixes' with 'He/She/It'."),
     (r'\b(He|She|It)\s+go\s+to\b',  r'\1 goes to', "Use 'goes to' with 'He/She/It'."),
@@ -150,7 +157,7 @@ GRAMMAR_RULES = [
     # Subject doubling (redundant pronoun)
     (r'\bMy\s+(names|name)\s+it\b',          None, "Remove 'it' — 'My name is' is correct, not 'My name it is'."),
     (r'\bMy\s+names\s+(is|was)\b',          r'My name \1', "'My names' is plural — use 'My name' when referring to your own name."),
-    (r'\b(\w+)\s+(he|she|it)\s+(is|was|has|does)\b',
+    (r'(?<!\bif\s)(?<!\bwish\s)(?<!\bthough\s)(?<!\bas\s)\b(\w+)\s+(he|she|it)\s+(is|was|has|does)\b',
      None, "Remove the extra pronoun — 'Subject + he/she/it' is redundant."),
 
     # Copula (am/is/are/was/were) + base verb → should be -ing
@@ -168,32 +175,52 @@ GRAMMAR_RULES = [
     (r'\b(These|Those)\s+does\b',r'\1 do',     "Use 'do' with plural subjects."),
 
     # Indefinite pronouns (always singular)
-    (r'\b(Everybody|Everyone|Everything)\s+(are|were)\b',
-     None, "Indefinite pronouns like 'everybody' take singular verbs ('is/was')."),
-    (r'\b(Somebody|Someone|Something)\s+(are|were)\b',
-     None, "Indefinite pronouns like 'somebody' take singular verbs ('is/was')."),
-    (r'\b(Anybody|Anyone|Anything)\s+(are|were)\b',
-     None, "Indefinite pronouns like 'anybody' take singular verbs ('is/was')."),
-    (r'\b(Nobody|No one|Nothing)\s+(are|were)\b',
-     None, "Indefinite pronouns like 'nobody' take singular verbs ('is/was')."),
-    (r'\bEach\s+(are|were)\b',
-     None, "'Each' takes a singular verb ('is/was')."),
-    (r'\b(Either|Neither)\s+(are|were)\b',
-     None, "'Either/Neither' take singular verbs ('is/was')."),
+    (r'\b(Everybody|Everyone|Everything)\s+(are|were|have)\b',
+     None, "Indefinite pronouns like 'everybody' take singular verbs ('is/was/has')."),
+    (r'\b(Somebody|Someone|Something)\s+(are|were|have)\b',
+     None, "Indefinite pronouns like 'somebody' take singular verbs ('is/was/has')."),
+    (r'\b(Anybody|Anyone|Anything)\s+(are|were|have)\b',
+     None, "Indefinite pronouns like 'anybody' take singular verbs ('is/was/has')."),
+    (r'\b(Nobody|No one|Nothing)\s+(are|were|have)\b',
+     None, "Indefinite pronouns like 'nobody' take singular verbs ('is/was/has')."),
+    (r'\bEach\s+(are|were|have)\b',
+     None, "'Each' takes a singular verb ('is/was/has')."),
+    (r'\b(Either|Neither)\s+(are|were|have)\b',
+     None, "'Either/Neither' take singular verbs ('is/was/has')."),
+    # Indefinite pronouns + base verb (missing -s)
+    (r'\b(Nobody|No\s*one|Nothing|Somebody|Someone|Something|Anybody|Anyone|Anything|Everybody|Everyone|Everything|Each)\s+(know|go|come|do|have|make|take|give|say|think|want|need|like|love|see|hear|feel|find|keep|hold|tell|say|call|ask|try|use|look|seem|help|work|play|live|start|stop|leave|arrive|bring|buy|sell|learn|teach|grow|break|catch|choose|drive|eat|drink|read|write|speak|swim|sing|run|walk|talk|sit|stand|sleep|wake|put|get|begin|build|send|spend|meet|pay|forget|hide|bite|freeze|fly|throw|draw|wear|steal|ride)\b',
+     None, "Indefinite pronouns take singular verbs (e.g. 'Nobody knows' not 'Nobody know'."),
 
     # There is/are agreement
-    (r'\bthere\s+is\s+(many|several|a\s+few|a\s+lot\s+of|lots\s+of|plenty\s+of|numerous|various)\b',
+    (r'\bthere\s+is\s+(many|several|a\s+few|lots\s+of|plenty\s+of|numerous|various)\b',
      None, "Use 'there are' with plural quantifiers."),
-    (r'\bthere\s+is\s+(people|children|men|women|teeth|feet|mice|geese|police|cattle|cars|dogs|cats|books|houses|trees|flowers|birds|fish|insects|animals|students|teachers|workers|doctors|nurses|engineers|lawyers|writers|artists|players|fans|members|friends|relatives|neighbors|parents|customers|clients|patients|passengers|drivers|riders|guests|visitors|tourists|strangers|enemies|soldiers|officers|leaders|managers|directors|owners|partners|colleagues|employees|bosses|chiefs|kings|queens|princes|princesses|heroes|villains|angels|devils|giants|dwarfs|elves|witches|wizards|dragons|monsters|ghosts|spirits|gods|goddesses|saints|prophets|apostles|disciples|believers|followers|critics|fans|supporters|opponents|rivals|allies|enemies|companies|organizations|groups|teams|committees|councils|boards|panels|commissions|delegations|delegates|representatives|ambassadors|ministers|senators|congressmen|governors|mayors|judges|attorneys|agents|spies|detectives|reporters|photographers|editors|publishers|authors|poets|musicians|singers|dancers|actors|actresses|directors|producers|writers|artists|painters|sculptors|architects|designers|engineers|technicians|mechanics|electricians|plumbers|carpenters|builders|farmers|gardeners|chefs|cooks|bakers|butchers|waiters|bartenders|servers|hosts|hostesses|cleaners|helpers|assistants|aides|secretaries|receptionists|telllers|cashiers|clerks|salespeople|merchants|traders|shopkeepers|vendors|suppliers|dealers|brokers|agents|managers|supervisors|coordinators|directors|presidents|vice\s+presidents|secretaries|treasurers|accountants|auditors|advisors|consultants|specialists|experts|analysts|scientists|researchers|professors|lecturers|instructors|tutors|coaches|trainers|mentors|guides|pilots|captains|commanders|chiefs|leaders|officials|authorities|figures|personalities|celebrities|stars|icons|legends|geniuses|prodigies|champions|winners|losers|players|competitors|contestants|participants|volunteers|donors|sponsors|patrons|benefactors|philanthropists|investors|shareholders|stakeholders|creditors|debtors|borrowers|lenders|owners|tenants|landlords|renters|occupants|residents|citizens|natives|foreigners|aliens|immigrants|refugees|settlers|colonists|pioneers|explorers|adventurers|travelers|tourists|visitors|passengers|commuters|pedestrians|cyclists|motorists|drivers|riders|hikers|campers|climbers|swimmers|runners|joggers|walkers|dancers|singers|musicians|artists|writers|readers|viewers|listeners|followers|subscribers|members|contributors|participants|attendees|spectators|audiences|crowds|groups|parties|classes|teams|crews|gangs|bands|orchestras|choirs|castes|tribes|clans|families|races|species|breeds|types|kinds|sorts|varieties|categories|classes|groups|sets|collections|assemblies|gatherings|meetings|conferences|conventions|rallies|protests|marches|parades|festivals|carnivals|concerts|shows|performances|exhibitions|displays|demonstrations|presentations|lectures|seminars|workshops|classes|courses|programs|sessions|lessons|tutorials|trainings|practices|exercises|drills|tests|exams|quizzes|surveys|polls|studies|researches|projects|assignments|tasks|jobs|chores|duties|responsibilities|roles|functions|positions|posts|offices|titles|ranks|grades|levels|stages|phases|steps|cycles|periods|eras|ages|epochs|generations|decades|centuries|millennia|years|months|weeks|days|hours|minutes|seconds|moments|instants|times|occasions|events|incidents|accidents|emergencies|crises|disasters|catastrophes|tragedies|dramas|comedies|stories|tales|legends|myths|fables|parables|allegories|metaphors|symbols|signs|indicators|markers|clues|hints|tips|suggestions|recommendations|proposals|plans|strategies|tactics|methods|techniques|approaches|systems|processes|procedures|operations|functions|activities|actions|steps|measures|initiatives|projects|programs|schemes|policies|rules|regulations|laws|statutes|ordinances|bylaws|codes|standards|principles|guidelines|directives|instructions|orders|commands|requests|demands|requirements|specifications|criteria|conditions|terms|provisions|clauses|sections|paragraphs|articles|chapters|pages|lines|words|letters|characters|symbols|numbers|figures|digits|values|amounts|quantities|totals|sums|averages|ratios|percentages|fractions|decimals|integers|wholes|halves|thirds|quarters|fifths|sixths|sevenths|eighths|ninths|tenths|millions|billions|trillions|dozens|hundreds|thousands)\b',
+    (r'\bthere\s+is\s+(people|children|men|women|teeth|feet|mice|geese|police|cattle|cars|dogs|cats|books|houses|trees|flowers|birds|students|teachers|workers|doctors|nurses|engineers|lawyers|writers|artists|players|members|friends|relatives|neighbors|parents|customers|clients|patients|passengers|drivers|guests|visitors|tourists|soldiers|officers|leaders|managers|directors|owners|partners|colleagues|employees|companies|organizations|groups|teams)\b',
      None, "Use 'there are' with these plural nouns."),
     (r'\bthere\s+(are|were)\s+(a|an)\b',
      None, "Use 'there is/was' with singular nouns."),
     (r'\bthere\s+is\s+(these|those)\b', None, "Use 'there are' with 'these/those' (plural)."),
     (r'\bthere\s+was\s+(these|those)\b', None, "Use 'there were' with 'these/those' (plural)."),
+    # Uncountable nouns with plural verbs
+    (r'\b(news|money|information|advice|furniture|equipment|luggage|homework|research|progress|traffic|music|evidence|data|paper|work|food|travel|fun|education|health|weather|art|love|hate|anger|fear|happiness|sadness|peace|war|silence|darkness|light|heat|cold|electricity|water|gas|oil|coal|wood|gold|silver|iron|steel|glass|plastic|cotton|leather|rubber|cloth|sand|dust|dirt|mud|snow|ice|rain|wind|fire|air|earth|space|land|sea|ocean|blood|bone|skin|hair)\s+(are|were)\b',
+     None, "Use 'is/was' with uncountable nouns (e.g. 'The news is shocking' not 'The news are')."),
+    # None of + uncountable + plural verb
+    (r'\bnone\s+of\s+the\s+(news|money|information|advice|furniture|equipment|luggage|homework|research|progress|traffic|music|evidence|data|paper|work|food|water|ice|snow|rain|blood|bone|skin|hair)\s+(were|are|have)\b',
+     None, "Use singular verb with 'none of' + uncountable noun (e.g. 'None of the money was found')."),
+    # None of + countable plural + singular verb (only match words ending in 's')
+    (r'\bnone\s+of\s+the\s+\w+s\s+(was|is|has)\b',
+     None, "Use plural verb with 'none of' + countable plural noun (e.g. 'None of the students were absent')."),
 
     # I/You/We/They + 3rd person verb form (common verbs)
-    (r'\b(I|You|We|They)\s+(goes|does|has|says|makes|takes|comes|gives|knows|thinks|wants|needs|likes|loves|works|plays|talks|walks|runs|eats|drinks|reads|writes|lives|starts|stops|helps|calls|buys|sells|brings|teaches|learns|catches|fights|flies|grows|throws|draws|wears|steals|swims|sings|begins|rings|sinks|freezes|chooses|wakes|forgets|gets|hides|bites|rides|drives|speaks|breaks)\b',
+    (r'\b(I|You|We|They)\s+(goes|does|has|says|makes|takes|comes|gives|knows|thinks|wants|needs|likes|loves|works|plays|talks|walks|runs|eats|drinks|reads|writes|lives|starts|stops|helps|calls|buys|sells|brings|teaches|learns|catches|fights|flies|grows|throws|draws|wears|steals|swims|sings|begins|rings|sinks|freezes|chooses|wakes|forgets|gets|hides|bites|rides|drives|speaks|breaks|hates|feels|hears|sees|keeps|finds|holds|puts|tells|pays|leaves|meets|sends|spends|builds|studies|tries|carries|worries|watches|washes|crosses|fixes)\b',
      None, "Use the base verb form with 'I/You/We/They', not the 3rd person singular form."),
+
+    # Do + 3rd person verb form (e.g. "I do goes", "I do has")
+    (r'\bdo\s+(goes|does|has|says|makes|takes|comes|gives|knows|thinks|wants|needs|likes|loves|works|plays|talks|walks|runs|eats|drinks|reads|writes|lives|starts|stops|helps|calls|buys|sells|brings|teaches|learns|catches|flies|grows|throws|draws|wears|steals|swims|sings|begins|rings|sinks|freezes|chooses|wakes|forgets|gets|hides|bites|rides|drives|speaks|breaks|hates|feels|hears|sees|keeps|finds|holds|puts|tells|pays|leaves|meets|sends|spends|builds|studies|tries|carries|worries|watches|washes|crosses|fixes|marries|hurries|cries|lies|ties|dies|copy|pay|say|play|pray|stay|obey|rely|apply|supply|imply|deny|reply|satisfy|justify|classify|identify|specify|modify|clarify|simplify|unify|organize|recognize|realize|finalize|authorize|capitalize|civilize|colonize|customize|emphasize|equalize|fertilize)\b',
+     None, "Use base verb form after 'do' (e.g. 'I do go' not 'I do goes')."),
+
+    # Do + past tense (e.g. "I do went")
+    (r'\bdo\s+(went|saw|took|ate|drank|drove|rode|flew|grew|threw|drew|wore|stole|sang|swam|ran|came|gave|made|broke|spoke|wrote|read|began|rang|sank|froze|chose|woke|forgot|hid|bit|fought|caught|taught|brought|bought|sold|told|knew|thought|left|met|lost|paid|sent|spent|built|understood|stood|sat|slept|kept|found|held|hung|felt|meant)\b',
+     None, "Use base verb form after 'do' (e.g. 'I did go' not 'I do went')."),
 
     # Me and X -> X and I
     (r'\bMe\s+and\s+(\w+)\b',
@@ -233,6 +260,7 @@ GRAMMAR_RULES = [
     (r'\b(I|He|She|It|You|We|They)\s+swimmed\b',  r'\1 swam',     "'swimmed' is not valid — past tense of 'swim' is 'swam'."),
     (r'\b(I|He|She|It|You|We|They)\s+sanged\b',   r'\1 sang',     "'sanged' is not valid — past tense of 'sing' is 'sang'."),
     (r'\b(I|He|She|It|You|We|They)\s+dranked\b',  r'\1 drank',    "'dranked' is not valid — past tense of 'drink' is 'drank'."),
+    (r'\b(I|He|She|It|You|We|They)\s+drinked\b',  r'\1 drank',    "'drinked' is not valid — past tense of 'drink' is 'drank'."),
     (r'\b(I|He|She|It|You|We|They)\s+beginned\b', r'\1 began',    "'beginned' is not valid — past tense of 'begin' is 'began'."),
     (r'\b(I|He|She|It|You|We|They)\s+ringed\b',   r'\1 rang',     "'ringed' is not valid — past tense of 'ring' is 'rang'."),
     (r'\b(I|He|She|It|You|We|They)\s+sinked\b',   r'\1 sank',     "'sinked' is not valid — past tense of 'sink' is 'sank'."),
@@ -353,8 +381,11 @@ GRAMMAR_RULES = [
     (r'\b(must|should|could|would|may|might)\s+to\s+(\w+)\b', r'\1 \2', "Do not use 'to' after a modal verb."),
     (r'\bcan\s+to\s+(\w+)\b',  r'can \1',     "Do not use 'to' after 'can'."),
 
-    # Auxiliary + to (remove extra "to")
+    # Auxiliary + to (remove extra "to") — with apostrophes
     (r'\b(don\'t|doesn\'t|didn\'t|won\'t|can\'t|couldn\'t|wouldn\'t|shouldn\'t|mustn\'t|shan\'t|mightn\'t|needn\'t|daren\'t)\s+to\s+(\w+)\b',
+     r'\1 \2', "Do not use 'to' after a negated auxiliary."),
+    # Auxiliary + to — without apostrophes
+    (r'\b(dont|doesnt|didnt|wont|cant|couldnt|wouldnt|shouldnt|mustnt|shant|mightnt|neednt|darent)\s+to\s+(\w+)\b',
      r'\1 \2', "Do not use 'to' after a negated auxiliary."),
     (r'\b(do|does|did)\s+not\s+to\s+(\w+)\b',
      r'\1 not \2', "Do not use 'to' after 'do/does/did not'."),
@@ -385,7 +416,6 @@ GRAMMAR_RULES = [
     (r'\bmany\s+homeworks\b',    "much homework",    "'homework' is uncountable — use 'much homework'."),
     (r'\bmany\s+researches\b',   "much research",    "'research' is uncountable — use 'much research'."),
     (r'\bmany\s+progresses\b',   "much progress",    "'progress' is uncountable — use 'much progress'."),
-    (r'\bmany\s+informations\b', None,     "'information' has no plural form — use 'much information'."),
     (r'\ban?\s+advices?\b',      None,               "'advice' is uncountable — use 'some advice' or just 'advice'."),
 
     # Much + countable noun
@@ -413,7 +443,6 @@ GRAMMAR_RULES = [
     (r'\bbored\s+of\b',         "bored with",    "Use 'bored with'."),
     (r'\bdiscuss\s+about\b',    "discuss",       "Use 'discuss' directly (no preposition needed)."),
     (r'\bcommented\s+about\b',  None,            "Use 'commented on', not 'commented about'."),
-    (r'\bpayed\b',              "paid",          "'payed' is incorrect — past tense of 'pay' is 'paid'."),
 
     # ── Double Negative ───────────────────────────────────────
     (r'\b(?:don\'t|doesn\'t|didn\'t)\s+\w+\s+nothing\b',  None, "Avoid double negatives — use 'anything' instead of 'nothing'."),
@@ -429,12 +458,21 @@ GRAMMAR_RULES = [
      None, "Use 'You're' (you are) not 'Your' (possessive)."),
     (r'\byou\'re\s+(house|car|book|phone|idea|job|name|friend|family|team|office|room|life|money|time|world|wife|husband|daughter|son|mother|father|sister|brother|boss|teacher|company)\b',
      None, "Use 'Your' (possessive) not 'You're' (you are)."),
+    # Youre (no apostrophe) + possessive noun
+    (r'\byoure\s+(house|car|book|phone|idea|job|name|friend|family|team|office|room|life|money|time|world|wife|husband|daughter|son|mother|father|sister|brother|boss|teacher|company|dog|cat)\b',
+     None, "Use 'Your' (possessive) not 'Youre'. Did you mean 'Your'?"),
 
     # Its vs It's
     (r"\bIt's\s+(house|car|book|phone|idea|job|name|friend|family|team|office|room|life|money|color|size|shape|smell|taste|sound|owner|origin|purpose)\b",
      None, "Use 'Its' (possessive) not 'It's' (it is)."),
-    (r"\bits\s+(not|a|an|the|very|really|quite|just|also|always|never|still|already|even|only|actually|certainly|definitely|probably|possibly)\b",
+    # Its (capital, no apostrophe) + verb/adj → should be It's (contraction)
+    (r"\bIts\s+(not|very|really|quite|just|also|always|never|still|already|even|only|going|been|raining|hard|important|clear|obvious|strange|worth|my|your|our|their|a|an|the|no|too)\b",
      None, "Use 'It's' (it is) not 'Its' (possessive)."),
+    (r"\bIts\s+time\s+to\b", None, "Use 'It's' (it is) not 'Its' (possessive) — 'It's time to go'."),
+    # its (lowercase, no apostrophe) + verb/adj → should be It's (contraction)
+    (r"\bits\s+(not|very|really|quite|just|also|always|never|still|already|even|only|going|been|raining|hard|important|clear|obvious|strange|worth|my|your|our|their|a|an|the|no|too)\b",
+     None, "Use 'It's' (it is) not 'its' (possessive)."),
+    (r"\bits\s+time\s+to\b", None, "Use 'It's' (it is) not 'its' (possessive) — 'It's time to go'."),
 
     # Their vs There vs They're
     (r'\bThere\s+(car|house|book|phone|idea|job|name|friend|family|team|office|room|life|money|time|world|kids|children|parents|dogs|cats|clothes|shoes|bags|keys|phones|computers)\b',
@@ -443,6 +481,9 @@ GRAMMAR_RULES = [
      None, "Use 'There' (existential) or 'They're' (they are) not 'Their'."),
     (r"\bThey're\s+(car|house|book|phone|idea|job|name|friend|family|team|office|room|house|dog|cat)\b",
      None, "Use 'Their' (possessive) not 'They're' (they are)."),
+    # Theyre (no apostrophe) + possessive noun
+    (r'\bTheyre\s+(car|house|book|phone|idea|job|name|friend|family|team|office|room|life|money|time|world|dog|cat|kids|children|parents)\b',
+     None, "Use 'Their' (possessive) not 'Theyre'. Did you mean 'Their'?"),
 
     # Then vs Than
     (r'\b(more|less|better|worse|bigger|smaller|faster|slower|older|younger|richer|poorer|higher|lower|greater|lesser|easier|harder|sooner|later|hotter|colder|warmer|earlier|further|farther)\s+then\b',
@@ -477,8 +518,10 @@ GRAMMAR_RULES = [
 
     # Common misspellings
     (r'\balot\b',             "a lot",       "'alot' is not a word — use 'a lot' (two words)."),
+    (r'\balots\b',            "a lot",       "'alots' is not a word — use 'a lot' (two words)."),
     (r'\beachother\b',        "each other",  "Use 'each other' (two words)."),
     (r'\binfact\b',           "in fact",     "Use 'in fact' (two words)."),
+    (r'\bin\s+fact\b',        None,          None),  # Placeholder — in fact with space is correct
     (r'\bincharge\b',         "in charge",   "Use 'in charge' (two words)."),
     (r'\bapart\s+of\b',       None,          "Use 'a part of' or 'apart from'."),
     (r'\bcan\s+not\b',        "cannot",      "Use 'cannot' (one word) in formal English."),
@@ -486,7 +529,7 @@ GRAMMAR_RULES = [
     # ── Comparatives / Superlatives ───────────────────────────
     (r'\bmore\s+(better|worse|bigger|smaller|older|younger|faster|slower|richer|poorer|higher|lower|greater|lesser|hotter|colder|warmer|cooler|darker|brighter|stronger|weaker|taller|shorter|longer|wider|deeper|earlier|later|simpler|happier|prettier|easier|harder|busier|funnier|angrier|friendlier|heavier|healthier|luckier|nicer|sadder|tastier|wealthier|calmer|quieter|cheaper|cleaner|clearer|closer|fresher|fuller|gentler|kinder|larger|looser|narrower|neater|newer|older|plainer|politer|quieter|rarer|safer|sharper|shorter|smarter|softer|steeper|stricter|stronger|sweeter|taller|thicker|thinner|tighter|tougher|warmer|weaker|wider|wiser)\b',
      None, "Double comparative — use the comparative form directly (e.g. 'better' not 'more better')."),
-    (r'\bmost\s+(best|worst|biggest|smallest|oldest|youngest|fastest|slowest|richest|poorest|highest|lowest|greatest|least|hottest|coldest|warmest|darkest|brightest|strongest|weakest|tallest|shortest|longest|widest|deepest|earliest|latest|simplest|happiest|prettiest|easiest|hardest|busiest|funniest|angriest|friendliest|heaviest|healthiest|luckiest|nicest|saddest|tastiest|wealthiest|calmest|quietest|cheapest|cleanest|clearest|closest|freshest|fullest|gentlest|kindest|largest|loosest|narrowest|neatest|newest|plainest|politest|rarest|safest|sharpest|shortest|smartest|softest|steepest|strictest|strongest|sweetest|thickest|thinnest|tightest|toughest)\b',
+    (r'\bmost\s+(best|worst|biggest|smallest|oldest|youngest|fastest|slowest|richest|poorest|highest|lowest|greatest|least|hottest|coldest|warmest|darkest|brightest|strongest|weakest|tallest|shortest|longest|widest|deepest|earliest|latest|simplest|happiest|prettiest|easiest|hardest|busiest|funniest|angriest|friendliest|heaviest|healthiest|luckiest|nicest|saddest|tastiest|wealthiest|calmest|quietest|cheapest|cleanest|clearest|closest|freshest|fullest|gentlest|kindest|largest|loosest|narrowest|neatest|newest|plainest|politest|rarest|safest|sharpest|shortest|smartest|softest|steepest|strictest|strongest|sweetest|thickest|thinnest|tightest|toughest|callest)\b',
      None, "Double superlative — use the superlative form directly (e.g. 'best' not 'most best')."),
 
     # ── Subjunctive Mood ─────────────────────────────────────
@@ -499,17 +542,59 @@ GRAMMAR_RULES = [
     (r'\bless\s+(people|children|men|women|students|workers|members|participants|customers|users|readers|viewers|listeners|patients|passengers|drivers|residents|citizens|families|animals|plants|trees|flowers|birds|fish|insects|days|hours|minutes|seconds|weeks|years|months|times|occasions|instances|cases|examples|reasons|factors|issues|problems|questions|answers|items|products|goods|services|words|pages|books|articles|stories|reports|emails|messages|letters|notes|files|documents|images|photos|videos|songs|movies|shows|games|jobs|tasks|projects|goals|ideas|thoughts|plans|decisions|chances|opportunities|choices|options|alternatives|countries|cities|towns|villages|shops|restaurants|hotels|schools|hospitals|banks|parks|roads|streets)\b',
      None, "Use 'fewer' with countable plural nouns."),
 
-    # ── Gerund / Infinitive ───────────────────────────────────
-    (r'\b(enjoy|avoid|suggest|recommend|mind|keep|consider|imagine|practice|finish|quit|resist|miss|appreciate|delay|postpone|deny|admit|regret|involve|mention|recall|report|risk|stop)\s+to\b',
-     None, "Use the gerund (-ing form) after this verb, not the infinitive."),
-    (r'\b(want|hope|expect|decide|plan|need|promise|refuse|manage|offer|agree|fail|tend|pretend|threaten|seem|appear|claim|learn|afford|arrange|choose|deserve|prepare|pretend|struggle|swear|volunteer|wait)\s+(going|coming|doing|making|taking|having|being|seeing|eating|drinking|running|walking|talking|telling|swimming|playing|working|studying|reading|writing|listening|speaking|sleeping|getting|saying|staying|living|giving|finding|keeping|starting|stopping|helping|calling|setting|buying|selling|building|watching|paying|asking|answering|sending|receiving|showing|meeting|leaving|arriving|returning|thinking|feeling|looking|trying|putting|breaking|bringing|teaching|learning)\b',
-     None, "Use 'to' + base verb (infinitive) after this verb, not the gerund."),
+    # ── Gerund / Infinitive (only clearly wrong patterns) ───────
+    (r'\bfinish(?:es|ed)?\s+to\b',   None, "Use the gerund (-ing form) after 'finish' (e.g. 'finish writing')."),
+    (r'\benjoy\s+to\b',         None, "Use the gerund (-ing form) after 'enjoy' (e.g. 'enjoy reading')."),
+    (r'\bavoid\s+to\b',         None, "Use the gerund (-ing form) after 'avoid' (e.g. 'avoid making')."),
+    (r'\bmind\s+to\b',          None, "Use the gerund (-ing form) after 'mind' (e.g. 'mind waiting')."),
+    (r'\bconsider\s+to\b',      None, "Use the gerund (-ing form) after 'consider' (e.g. 'consider moving')."),
+    (r'\bsuggest(?:ed)?\s+to\s+\w+\b', None, "Use gerund or 'suggest that + subject + base verb' (not 'suggest to do')."),
+    (r'\brecommend(?:ed)?\s+to\s+\w+\b', None, "Use gerund or 'recommend that + subject + base verb' (not 'recommend to do')."),
+    (r'\bpractice\s+to\b',      None, "Use the gerund (-ing form) after 'practice' (e.g. 'practice speaking')."),
+    (r'\bden(?:y|ied)\s+to\b',  None, "Use the gerund (-ing form) after 'deny' (e.g. 'deny taking')."),
+    (r'\badmit(?:ted)?\s+to\b(?!\s+do)', None, "Use the gerund (-ing form) after 'admit' (e.g. 'admit breaking')."),
+    (r'\bregret\s+to\b(?!\s+say\b)', None, "Use the gerund after 'regret' for past actions (e.g. 'regret telling')."),
+    (r'\bmiss\s+to\b',          None, "Use the gerund (-ing form) after 'miss' (e.g. 'miss traveling')."),
+    (r'\bquit\s+to\b',          None, "Use the gerund (-ing form) after 'quit' (e.g. 'quit smoking')."),
+    (r'\bappreciate\s+to\b',    None, "Use the gerund (-ing form) after 'appreciate' (e.g. 'appreciate helping')."),
+
+    # ── -ing/-ed Adjective Confusion ──────────────────────────
+    (r'\b(I|You|We|They)\s+(am|are)\s+(interesting|boring|exciting|surprising|confusing|tiring|disappointing|embarrassing|relaxing|satisfying)\b',
+     None, "Use the -ed form for how you feel (e.g. 'I am interested' not 'I am interesting')."),
+    (r'\b(He|She|It)\s+is\s+(interesting|boring|exciting|surprising|confusing|tiring|disappointing|embarrassing|relaxing|satisfying)\b',
+     None, "Use the -ed form for how you feel (e.g. 'He is interested' not 'He is interesting')."),
+    # Base verb form used as adjective (e.g. "I am surprise" → "I am surprised")
+    (r'\b(I|You|We|They)\s+(am|are)\s+(surprise|confuse|tire|bore|disappoint|embarrass|relax|satisfy|excite|interest|bore|tire|confuse|surprise|disappoint|embarrass|relax|satisfy)\b',
+     None, "Use the -ed form for how you feel (e.g. 'I am surprised' not 'I am surprise')."),
+    (r'\b(He|She|It)\s+is\s+(surprise|confuse|tire|bore|disappoint|embarrass|relax|satisfy|excite|interest|bore|tire|confuse|surprise|disappoint|embarrass|relax|satisfy)\b',
+     None, "Use the -ed form for how you feel (e.g. 'He is surprised' not 'He is surprise')."),
+
+    # ── He/She/It + base verb (missing -s) ───────────────────
+    (r'\b(He|She|It)\s+(give|take|make|come|go|see|know|think|want|need|like|love|work|play|talk|walk|run|eat|drink|read|write|live|start|stop|help|call|buy|sell|bring|teach|learn|catch|fight|fly|grow|throw|draw|wear|steal|swim|sing|begin|ring|sink|freeze|choose|wake|forget|get|hide|bite|ride|drive|speak|break|hate|feel|hear|keep|find|hold|put|tell|pay|leave|meet|send|spend|build|study|try|carry|worry|watch|wash|cross|fix)\b',
+     r'\1 \2s', "Use the -s form with 'He/She/It' (e.g. 'He gives' not 'He give')."),
+
+    # ── a + vowel sound (should be 'an') ─────────────────────
+    (r'\ba\s+(apple|elephant|ice|orange|umbrella|egg|hour|honest|heir|honor|herb|opinion|use|union|unique|unit|university|upstairs|upward|urban|urgent|useful|useless|usual|usually|utility)\b',
+     r'an \1', "Use 'an' before vowel sounds (e.g. 'an apple' not 'a apple')."),
+
+    # ── There is a lot of + plural noun ──────────────────────
+    (r'\bthere\s+is\s+a\s+lot\s+of\s+\w+s\b', None, "Use 'there are a lot of' with plural nouns."),
+
+    # ── Each/Either/Neither + noun + plural verb ─────────────
+    (r'\bEach\s+\w+\s+(are|were|have)\b', None, "'Each' takes a singular verb (e.g. 'Each student has')."),
+    (r'\b(Either|Neither)\s+\w+\s+(are|were|have)\b', None, "'Either/Neither' take singular verbs (e.g. 'Either option is')."),
+
+    # ── Missing verb (subject + preposition) ─────────────────
+    (r'^(I|He|She|It|You|We|They)\s+(in|on|at|under|over|between|among|against|along|across|through|around)\b', None, "Missing verb — e.g. 'I am in charge' not 'I in charge'."),
+    # ── Missing subject (verb at sentence start) ─────────────
+    (r'^(Depend|Go|Come|Run|Walk|Talk|Look|Wait|Stop|Start|Begin|Try|Help|Work|Play|Live|Study|Learn|Teach|Read|Write|Speak|Swim|Sing|Dance|Eat|Drink|Sleep|Wake|Sit|Stand|Open|Close|Push|Pull|Turn|Move|Happen|Exist|Belong|Contain|Include|Remain|Appear|Disappear|Develop|Grow|Change|Stay|Leave|Arrive|Return|Finish|Complete|Succeed|Fail|Win|Lose|Fight|Struggle|Compete|Communicate|Negotiate|Agree|Disagree|Accept|Refuse|Deny|Admit|Confess|Apologize|Complain|Criticize|Praise|Thank|Welcome|Greet|Introduce|Present|Announce|Declare|State|Claim|Argue|Debate|Explain|Describe|Clarify|Summarize|Review|Evaluate|Assess|Judge|Compare|Contrast|Analyze|Investigate|Research|Explore|Discover|Invent|Create|Design|Build|Construct|Produce|Manufacture|Generate|Improve|Enhance|Update|Upgrade|Modify|Adjust|Adapt|Revise|Correct|Fix|Repair|Maintain|Preserve|Protect|Defend|Guard|Secure|Attack|Invade|Conquer|Defeat|Destroy|Demolish|Remove|Delete|Eliminate|Erase|Cancel|Abort|Terminate|Arrange|Organize|Plan|Prepare|Setup|Configure|Install|Load|Save|Store|Retrieve|Access|Search|Find|Locate|Identify|Recognize|Detect|Monitor|Track|Trace|Record|Log|Document|Report|Publish|Broadcast|Transmit|Receive|Send|Deliver|Distribute|Share|Transfer|Exchange|Trade|Buy|Sell|Purchase|Pay|Spend|Save|Invest|Borrow|Lend|Cost|Count|Measure|Calculate|Compute|Estimate|Predict|Forecast)\b',
+     None, "Missing subject — e.g. 'It depends' not 'Depend'."),
 
     # ── Capitalization ────────────────────────────────────────
     (r'(?-i:\bi\b)', "I", "The pronoun 'I' must always be capitalized."),
     (r'\b(monday|tuesday|wednesday|thursday|friday|saturday|sunday)\b',
      None, "Days of the week must be capitalized."),
-    (r'\b(january|february|march|april|may|june|july|august|september|october|november|december)\b',
+    (r'\b(january|february|march|april|june|july|august|september|october|november|december)\b',
      None, "Month names must be capitalized."),
 
     # ── Punctuation ───────────────────────────────────────────

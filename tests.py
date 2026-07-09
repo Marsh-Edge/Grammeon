@@ -90,6 +90,90 @@ QUESTIONS = {
             "correct": 1,
             "explanation": "\"The children\" is plural, so we use \"are\"."
         },
+        {
+            "question": "She ___ every morning at 6 AM.",
+            "options": ["wake up", "wakes up", "waking up", "waked up"],
+            "correct": 1,
+            "explanation": "\"She\" is third person singular, so we use \"wakes up\"."
+        },
+        {
+            "question": "There ___ a cat under the table.",
+            "options": ["are", "is", "am", "be"],
+            "correct": 1,
+            "explanation": "\"A cat\" is singular, so we use \"there is\"."
+        },
+        {
+            "question": "He ___ to music every day.",
+            "options": ["listen", "listens", "listening", "listened"],
+            "correct": 1,
+            "explanation": "\"He\" is third person singular, so the verb takes an \"-s\"."
+        },
+        {
+            "question": "___ is a beautiful day.",
+            "options": ["This", "These", "They", "Those"],
+            "correct": 0,
+            "explanation": "\"This\" is used for singular things near us, including situations."
+        },
+        {
+            "question": "The sun ___ in the east.",
+            "options": ["rise", "rises", "rising", "rised"],
+            "correct": 1,
+            "explanation": "\"The sun\" is third person singular (it), so we use \"rises\"."
+        },
+        {
+            "question": "I ___ a student.",
+            "options": ["is", "am", "are", "be"],
+            "correct": 1,
+            "explanation": "\"I\" always uses \"am\" with the verb 'to be'."
+        },
+        {
+            "question": "They ___ happy today.",
+            "options": ["is", "am", "are", "be"],
+            "correct": 2,
+            "explanation": "\"They\" is plural, so we use \"are\"."
+        },
+        {
+            "question": "We ___ lunch at noon.",
+            "options": ["eat", "eats", "eating", "eated"],
+            "correct": 0,
+            "explanation": "\"We\" takes the base form of the verb in present simple."
+        },
+        {
+            "question": "___ dog is very friendly.",
+            "options": ["A", "An", "The", "No article"],
+            "correct": 0,
+            "explanation": "\"Dog\" starts with a consonant sound, so we use \"a\"."
+        },
+        {
+            "question": "She ___ two sisters.",
+            "options": ["have", "has", "having", "haves"],
+            "correct": 1,
+            "explanation": "\"She\" is third person singular, so we use \"has\"."
+        },
+        {
+            "question": "The boys ___ playing football.",
+            "options": ["is", "are", "am", "be"],
+            "correct": 1,
+            "explanation": "\"The boys\" is plural, so we use \"are\"."
+        },
+        {
+            "question": "I ___ coffee every morning.",
+            "options": ["drink", "drinks", "drinking", "drinked"],
+            "correct": 0,
+            "explanation": "\"I\" takes the base form of the verb in present simple."
+        },
+        {
+            "question": "It ___ cold in winter.",
+            "options": ["are", "is", "am", "be"],
+            "correct": 1,
+            "explanation": "\"It\" is third person singular, so we use \"is\"."
+        },
+        {
+            "question": "You ___ very kind.",
+            "options": ["is", "are", "am", "be"],
+            "correct": 1,
+            "explanation": "\"You\" always uses \"are\" with the verb 'to be'."
+        },
     ],
     "A2": [
         {
@@ -181,6 +265,90 @@ QUESTIONS = {
             "options": ["Would", "Do", "Are", "Shall"],
             "correct": 0,
             "explanation": "\"Would you like\" is a polite way to offer something."
+        },
+        {
+            "question": "She stopped ___ a cigarette.",
+            "options": ["to smoke", "smoking", "smoke", "smoked"],
+            "correct": 0,
+            "explanation": "\"Stopped to smoke\" means she paused in order to smoke. \"Stopped smoking\" would mean she quit."
+        },
+        {
+            "question": "I remember ___ the door this morning.",
+            "options": ["to lock", "locking", "locked", "lock"],
+            "correct": 1,
+            "explanation": "\"Remember + gerund\" refers to a past memory (I remember the act of locking)."
+        },
+        {
+            "question": "He tried ___ the window but it was stuck.",
+            "options": ["to open", "opening", "open", "opened"],
+            "correct": 0,
+            "explanation": "\"Tried to open\" means he attempted the action. \"Tried opening\" would mean he experimented with a method."
+        },
+        {
+            "question": "I forgot ___ her about the meeting.",
+            "options": ["to tell", "telling", "tell", "told"],
+            "correct": 0,
+            "explanation": "\"Forgot to tell\" means I didn't tell her (I forgot the task). \"Forgot telling\" would mean I don't remember telling her."
+        },
+        {
+            "question": "She enjoys ___ in the rain.",
+            "options": ["walk", "walking", "to walk", "walked"],
+            "correct": 1,
+            "explanation": "\"Enjoy\" is always followed by the gerund (-ing form)."
+        },
+        {
+            "question": "We decided ___ at home tonight.",
+            "options": ["staying", "to stay", "stay", "stayed"],
+            "correct": 1,
+            "explanation": "\"Decide\" is followed by the infinitive with 'to'."
+        },
+        {
+            "question": "He denied ___ the money.",
+            "options": ["to steal", "stealing", "steal", "stole"],
+            "correct": 1,
+            "explanation": "\"Deny\" is always followed by the gerund (-ing form), never the infinitive."
+        },
+        {
+            "question": "I look forward ___ from you.",
+            "options": ["to hear", "to hearing", "hearing", "hear"],
+            "correct": 1,
+            "explanation": "\"Look forward to\" uses 'to' as a preposition, so it takes the gerund."
+        },
+        {
+            "question": "She suggested ___ the meeting.",
+            "options": ["to cancel", "canceling", "cancel", "canceled"],
+            "correct": 1,
+            "explanation": "\"Suggest\" is followed by the gerund (-ing form) or 'that' clause."
+        },
+        {
+            "question": "He is used ___ early in the morning.",
+            "options": ["to get", "to getting", "get", "getting"],
+            "correct": 1,
+            "explanation": "\"Be used to\" means 'be accustomed to' and takes a gerund."
+        },
+        {
+            "question": "I used ___ smoke but I quit.",
+            "options": ["to", "for", "at", "on"],
+            "correct": 0,
+            "explanation": "\"Used to\" + base verb describes a past habit that no longer happens."
+        },
+        {
+            "question": "She apologized ___ late.",
+            "options": ["to be", "for being", "being", "be"],
+            "correct": 1,
+            "explanation": "\"Apologize for\" is followed by a gerund (noun form)."
+        },
+        {
+            "question": "I'm interested ___ learning French.",
+            "options": ["on", "in", "at", "about"],
+            "correct": 1,
+            "explanation": "\"Interested\" is followed by the preposition \"in\"."
+        },
+        {
+            "question": "He insisted ___ paying for dinner.",
+            "options": ["to", "on", "at", "for"],
+            "correct": 1,
+            "explanation": "\"Insist on\" is followed by a gerund."
         },
     ],
     "B1": [
@@ -274,6 +442,91 @@ QUESTIONS = {
             "correct": 0,
             "explanation": "\"Lost\" is the past participle of \"lose\", used with \"has\" in present perfect."
         },
+        {
+            "question": "If I had studied harder, I ___ the exam.",
+            "options": ["would pass", "would have passed", "will pass", "passed"],
+            "correct": 1,
+            "explanation": "Mixed conditional: past condition (had studied) → past result (would have passed)."
+        },
+        {
+            "question": "She speaks English ___ she were American.",
+            "options": ["like", "as if", "as", "than"],
+            "correct": 1,
+            "explanation": "\"As if\" introduces a hypothetical comparison (subjunctive mood follows)."
+        },
+        {
+            "question": "The book ___ I read last week was amazing.",
+            "options": ["who", "which", "whose", "whom"],
+            "correct": 1,
+            "explanation": "\"Which\" is used as a relative pronoun for things."
+        },
+        {
+            "question": "He asked me where I ___.",
+            "options": ["live", "lived", "am living", "will live"],
+            "correct": 1,
+            "explanation": "In reported speech, the tense shifts back: present 'live' becomes past 'lived'."
+        },
+        {
+            "question": "I wish I ___ more time for hobbies.",
+            "options": ["have", "had", "has", "having"],
+            "correct": 1,
+            "explanation": "After 'wish', we use past tense to express a present regret."
+        },
+        {
+            "question": "She would rather I ___ the window.",
+            "options": ["close", "closed", "closing", "closes"],
+            "correct": 1,
+            "explanation": "\"Would rather + subject\" is followed by past tense for present/future preferences."
+        },
+        {
+            "question": "By the time we arrived, the movie ___.",
+            "options": ["already started", "had already started", "has already started", "was starting"],
+            "completed": 1,
+            "correct": 1,
+            "explanation": "Past perfect (had started) is used for an action completed before another past action."
+        },
+        {
+            "question": "He pretended ___ asleep.",
+            "options": ["to be", "being", "be", "been"],
+            "correct": 0,
+            "explanation": "\"Pretend\" is followed by the infinitive with 'to'."
+        },
+        {
+            "question": "She denied ___ the email.",
+            "options": ["to read", "reading", "read", "reads"],
+            "correct": 1,
+            "explanation": "\"Deny\" is followed by the gerund (-ing form), not the infinitive."
+        },
+        {
+            "question": "___ he arrived, the party started.",
+            "options": ["As soon as", "Until", "Unless", "Before"],
+            "correct": 0,
+            "explanation": "\"As soon as\" means 'at the moment when' and connects two simultaneous actions."
+        },
+        {
+            "question": "The house ___ was built in 1900 needs repair.",
+            "options": ["which", "who", "where", "whom"],
+            "correct": 0,
+            "explanation": "\"Which\" is the relative pronoun for things in defining relative clauses."
+        },
+        {
+            "question": "If it ___ tomorrow, we'll cancel the picnic.",
+            "options": ["rains", "will rain", "rained", "raining"],
+            "correct": 0,
+            "explanation": "First conditional: 'if + present simple, will + base verb'."
+        },
+        {
+            "question": "He suggested that she ___ the document carefully.",
+            "options": ["reads", "read", "reading", "would read"],
+            "correct": 1,
+            "explanation": "After verbs of suggestion/request, we use the subjunctive (base form)."
+        },
+        {
+            "question": "I don't mind ___ for you if you're busy.",
+            "options": ["to wait", "waiting", "wait", "waited"],
+            "correct": 1,
+            "explanation": "\"Mind\" is always followed by the gerund (-ing form)."
+        },
     ],
     "B2": [
         {
@@ -366,6 +619,90 @@ QUESTIONS = {
             "correct": 3,
             "explanation": "All three verbs (prevent, keep, stop) can be used with \"from + gerund\"."
         },
+        {
+            "question": "It is high time we ___ a decision.",
+            "options": ["make", "made", "will make", "are making"],
+            "correct": 1,
+            "explanation": "\"It's high time\" is followed by past tense to express urgency about the present."
+        },
+        {
+            "question": "The project ___ by next Friday.",
+            "options": ["will complete", "will be completed", "is completing", "has completed"],
+            "correct": 1,
+            "explanation": "Future passive: will + be + past participle."
+        },
+        {
+            "question": "She speaks French ___ it were her native language.",
+            "options": ["like", "as if", "than", "so"],
+            "correct": 1,
+            "explanation": "\"As if\" introduces a hypothetical comparison (subjunctive mood follows)."
+        },
+        {
+            "question": "I'd rather you ___ smoke in here.",
+            "options": ["don't", "didn't", "not", "won't"],
+            "correct": 1,
+            "explanation": "\"I'd rather + subject\" is followed by past tense for present/future preferences."
+        },
+        {
+            "question": "___ it not been for your help, I would have failed.",
+            "options": ["Had", "Has", "Have", "If"],
+            "correct": 0,
+            "explanation": "Inverted third conditional: 'Had + subject + past participle' replaces 'If it had not been'."
+        },
+        {
+            "question": "She wished she ___ harder for the exam.",
+            "options": ["studied", "had studied", "studies", "would study"],
+            "correct": 1,
+            "explanation": "After 'wish' about the past, we use past perfect to express regret."
+        },
+        {
+            "question": "He denied ___ the car.",
+            "options": ["to steal", "stealing", "steal", "stole"],
+            "correct": 1,
+            "explanation": "\"Deny\" is always followed by the gerund (-ing form), not the infinitive."
+        },
+        {
+            "question": "The reason ___ he was late is unknown.",
+            "options": ["why", "which", "what", "whom"],
+            "correct": 0,
+            "explanation": "\"Why\" is the relative adverb used with 'reason'."
+        },
+        {
+            "question": "She is used ___ long hours.",
+            "options": ["to work", "to working", "work", "working"],
+            "correct": 1,
+            "explanation": "\"Be used to\" means 'be accustomed to' and takes a gerund."
+        },
+        {
+            "question": "___ the circumstances, we had no choice.",
+            "options": ["Under", "In", "On", "At"],
+            "correct": 0,
+            "explanation": "\"Under the circumstances\" is a fixed expression meaning 'given the situation'."
+        },
+        {
+            "question": "He made her ___ the truth.",
+            "options": ["to tell", "tell", "telling", "told"],
+            "correct": 1,
+            "explanation": "After 'make' (causative), we use the base verb without 'to'."
+        },
+        {
+            "question": "The man ___ car was stolen reported it.",
+            "options": ["who", "which", "whose", "that"],
+            "correct": 2,
+            "explanation": "\"Whose\" shows possession in relative clauses (the man's car = whose car)."
+        },
+        {
+            "question": "She had her hair ___ yesterday.",
+            "options": ["cut", "cutting", "to cut", "cuts"],
+            "correct": 0,
+            "explanation": "\"Have something done\" (causative) uses past participle: had her hair cut."
+        },
+        {
+            "question": "Not until she arrived ___ the truth.",
+            "options": ["she knew", "did she know", "she did know", "had she known"],
+            "correct": 1,
+            "explanation": "\"Not until\" at the start triggers subject-auxiliary inversion."
+        },
     ],
     "C1": [
         {
@@ -457,6 +794,90 @@ QUESTIONS = {
             "options": ["made", "make", "will make", "are making"],
             "correct": 0,
             "explanation": "\"It's high time\" is followed by past tense to express that something should have been done already."
+        },
+        {
+            "question": "The professor requested that every student ___ the paper.",
+            "options": ["submits", "submit", "submitted", "would submit"],
+            "correct": 1,
+            "explanation": "After verbs of demand/request, we use the subjunctive (base form)."
+        },
+        {
+            "question": "Had I known about the traffic, I ___ earlier.",
+            "options": ["would leave", "would have left", "will leave", "left"],
+            "correct": 1,
+            "explanation": "Inverted third conditional: 'Had + subject + past participle' → 'would have + past participle'."
+        },
+        {
+            "question": "She speaks as if she ___ the place.",
+            "options": ["knows", "knew", "known", "has known"],
+            "correct": 1,
+            "explanation": "After 'as if' for hypothetical situations, we use past tense (subjunctive)."
+        },
+        {
+            "question": "The man ___ she spoke was her boss.",
+            "options": ["who", "whom", "whose", "which"],
+            "correct": 1,
+            "explanation": "\"Whom\" is the object form of 'who' — 'she spoke to him' → 'to whom she spoke'."
+        },
+        {
+            "question": "Not only ___ the exam, but she also got the highest score.",
+            "options": ["she passed", "did she pass", "she passes", "she has passed"],
+            "correct": 1,
+            "explanation": "\"Not only\" at the start triggers subject-auxiliary inversion."
+        },
+        {
+            "question": "___ it not been for your help, I would have failed.",
+            "options": ["Had", "Has", "Have", "If"],
+            "correct": 0,
+            "explanation": "Inverted third conditional: 'Had it not been for' = 'If it had not been for'."
+        },
+        {
+            "question": "She demanded that he ___ the document immediately.",
+            "options": ["signs", "sign", "signed", "would sign"],
+            "correct": 1,
+            "explanation": "After verbs of demand, we use the subjunctive (base form)."
+        },
+        {
+            "question": "I'd rather you ___ that to me yesterday.",
+            "options": ["didn't say", "don't say", "not say", "won't say"],
+            "correct": 0,
+            "explanation": "\"Would rather + subject\" uses past tense for present/future, past perfect for past."
+        },
+        {
+            "question": "___ the circumstances, we had no choice but to cancel.",
+            "options": ["Under", "In", "On", "At"],
+            "correct": 0,
+            "explanation": "\"Under the circumstances\" is a fixed expression meaning 'given the situation'."
+        },
+        {
+            "question": "She is accustomed ___ in a fast-paced environment.",
+            "options": ["to work", "to working", "work", "working"],
+            "correct": 1,
+            "explanation": "\"Be accustomed to\" is followed by a gerund (noun form)."
+        },
+        {
+            "question": "The artist, ___ paintings sell for millions, remains humble.",
+            "options": ["who", "whom", "whose", "which"],
+            "correct": 2,
+            "explanation": "\"Whose\" shows possession: 'the artist's paintings' = 'whose paintings'."
+        },
+        {
+            "question": "So absorbed ___ in her book that she didn't hear the doorbell.",
+            "options": ["she was", "was she", "she is", "is she"],
+            "correct": 1,
+            "explanation": "\"So + adjective + be + subject\" at the start triggers inversion."
+        },
+        {
+            "question": "The manager insisted that the report ___ by Friday.",
+            "options": ["is completed", "be completed", "was completed", "will be completed"],
+            "correct": 1,
+            "explanation": "After 'insisted that', we use the subjunctive: 'be completed' (base form)."
+        },
+        {
+            "question": "No sooner ___ the phone rang than the doorbell went off.",
+            "options": ["had I sat down", "I had sat down", "I sat down", "did I sat down"],
+            "correct": 0,
+            "explanation": "\"No sooner\" requires inversion: 'No sooner had + subject + past participle'."
         },
     ],
 }
