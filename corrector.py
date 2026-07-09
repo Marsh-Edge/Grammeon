@@ -15,12 +15,22 @@ def check_grammar(text: str) -> tuple:
                 wrong = match.group()
                 key = (wrong.lower(), message)
                 if key not in seen:
-                    seen.add(key)
-                    errors.append({
-                        "wrong": wrong,
-                        "message": message,
-                        "suggestions": [re.sub(pattern, fix, wrong, flags=re.IGNORECASE)] if fix else []
-                    })
+                    if fix:
+                        suggestion = re.sub(pattern, fix, wrong, flags=re.IGNORECASE)
+                        if suggestion != wrong:
+                            seen.add(key)
+                            errors.append({
+                                "wrong": wrong,
+                                "message": message,
+                                "suggestions": [suggestion]
+                            })
+                    elif message:
+                        seen.add(key)
+                        errors.append({
+                            "wrong": wrong,
+                            "message": message,
+                            "suggestions": []
+                        })
 
             if fix:
                 corrected = re.sub(pattern, fix, corrected, flags=re.IGNORECASE)
