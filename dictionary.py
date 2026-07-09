@@ -50,8 +50,11 @@ def format_definition(data: list) -> str:
 
 async def define(word: str) -> str:
     url = API_URL.format(word.strip().lower())
-    async with httpx.AsyncClient() as client:
-        resp = await client.get(url, timeout=10)
+    try:
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(url, timeout=10)
+    except httpx.HTTPError:
+        return f"⚠️ Network error while looking up *{word}*. Please try again later."
 
     if resp.status_code == 404:
         return f"❌ Sorry, I couldn't find the word *{word}*."
