@@ -3,135 +3,122 @@
 <p align="center">
   <img src="https://img.shields.io/badge/python-3.9%2B-blue" alt="Python 3.9+">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="MIT License">
-  <img src="https://img.shields.io/badge/status-active-brightgreen" alt="Active">
 </p>
 
-Grammeon is a Telegram-based English learning assistant that provides concise, actionable feedback on grammar, vocabulary, and exam readiness. It combines a rule-driven grammar engine with interactive Telegram flows to deliver corrections, explanations, definitions, and practice tests.
+Grammeon is a Telegram bot that helps learners improve their English grammar, vocabulary, and exam performance through interactive conversations. It combines a rule-based grammar engine with a friendly chat interface to deliver instant corrections, explanations, definitions, and practice tests.
 
-Key capabilities:
-
-- Grammar correction with clear explanations and a readability/accuracy score
-- Dictionary lookups with definitions, phonetics, and examples
-- Synonyms and antonyms search with part-of-speech filtering
-- Level-based quizzes (A1–C1) and exam simulations (IELTS, TOEFL, CERT)
-- Rate limiting and input validation to ensure robust operation
-
-## Table of contents
-
-- [Grammeon](#grammeon)
-  - [Table of contents](#table-of-contents)
-  - [Features](#features)
-  - [How it works](#how-it-works)
-  - [Project structure](#project-structure)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Commands](#commands)
-  - [Testing](#testing)
-  - [License](#license)
-  - [Contributing](#contributing)
+---
 
 ## Features
 
-- Grammar correction and scoring with explanations
-- Word definitions, phonetics, and usage examples
-- Synonyms and antonyms with POS filtering
-- Curated learning resources for self-study
-- Level tests and full exam simulations with section scoring
-- Built-in rate limiting and input validation
+| Capability | Description |
+|---|---|
+| **Grammar correction** | Detects errors, provides corrected sentences, and explains issues with a score out of 10 |
+| **Dictionary** | Word definitions, phonetics, and usage examples via an external API |
+| **Synonyms & Antonyms** | Part-of-speech filtered word relationships |
+| **Learning resources** | Curated books, websites, and video channels for self-study |
+| **Level tests** | Multiple-choice quizzes for CEFR levels A1 through C1 |
+| **Exam simulations** | Full-length IELTS, TOEFL, and CERT practice exams with section scoring |
+| **Input validation** | Length limits and character filtering on all user inputs |
+| **Rate limiting** | Spam protection at 10 messages per 60-second window |
+
+---
 
 ## How it works
 
-Users interact with the bot through Telegram. The bot accepts a sentence or a word and returns one or more of the following depending on the flow:
+Users interact with Grammeon through Telegram. The bot accepts sentences and words, then returns feedback through context-aware inline keyboards:
 
-- Corrected sentence and suggested improvements
-- Identified grammar issues with concise explanations
-- Score and guidance to improve writing
-- Dictionary entries, synonyms, and antonyms
-- Interactive quizzes and exam-style tests
+- **Sentences** are analysed for grammar errors and returned with corrections, explanations, and a score
+- **Words** can be looked up for definitions or synonyms and antonyms
+- **Interactive flows** guide users through level-based tests and full exam simulations
 
-Interactive flows use inline keyboards for navigation and user inputs. The core grammar logic is implemented in `corrector.py` and `grammar_rules.py`; presentation and message formatting are handled by `formatter.py`.
+The grammar engine is implemented in `corrector.py` and `grammar_rules.py`. Formatting and presentation are handled by `formatter.py`.
+
+---
 
 ## Project structure
 
 ```
 grammeon/
-├── bot.py                 # Telegram bot entry point and routing
-├── handlers.py            # Command handlers and interaction flows
-├── corrector.py           # Grammar-checking engine
-├── grammar_rules.py       # Rule definitions and patterns
-├── formatter.py           # Message formatting for Telegram
-├── dictionary.py          # External dictionary API wrapper
-├── synonyms_antonyms.py   # Synonym/antonym utilities
+├── bot.py                 # Telegram application setup and polling
+├── handlers.py            # Command handlers, button routing, interaction flows
+├── corrector.py           # Grammar checking and scoring logic
+├── grammar_rules.py       # Pattern-based correction rules
+├── formatter.py           # Formats results for Telegram output
+├── dictionary.py          # Dictionary API client
+├── synonyms_antonyms.py   # Synonym and antonym lookup
 ├── resources.py           # Curated learning materials
-├── tests.py               # Level test questions and evaluation logic
-├── exams.py               # Exam simulations and scoring
-└── README.md              # Project documentation
+├── tests.py               # Level test questions (A1–C1) and evaluation
+├── exams.py               # Exam simulations (IELTS, TOEFL, CERT)
+└── README.md              # This file
 ```
 
-## Installation
+---
 
-Prerequisites:
+## Getting started
 
-- Python 3.9 or newer
-- A Telegram bot token from BotFather
+### Prerequisites
 
-Quick setup:
+- Python 3.9 or later
+- A Telegram bot token from [BotFather](https://t.me/botfather)
+
+### Installation
 
 ```bash
 git clone https://github.com/Marsh-Edge/Grammeon.git
 cd Grammeon
 python -m venv .venv
+
 # macOS / Linux
 source .venv/bin/activate
+
 # Windows (PowerShell)
 .venv\Scripts\Activate
-pip install -r requirements.txt
+
+pip install python-telegram-bot python-dotenv httpx
 ```
 
-Create a `.env` file with your bot token:
+Create a `.env` file in the project root:
 
 ```env
 TELEGRAM_TOKEN=your_bot_token_here
 ```
 
-## Usage
-
-Start the bot locally:
+### Running
 
 ```bash
 python bot.py
 ```
 
-Open the bot in Telegram and use the provided commands or inline keyboard to interact.
+---
 
 ## Commands
 
-- `/start` — Welcome message and primary menu
-- `/help` — Usage instructions and feature overview
-- `/resources` — Curated learning resources
-- `/exams` — Start an exam simulation (IELTS/TOEFL/CERT)
+| Command       | Description |
+|---------------|-------------|
+| `/start`      | Welcome message and main menu |
+| `/help`       | Feature overview and usage instructions |
+| `/resources`  | Curated learning resources |
+| `/exams`      | Start an IELTS, TOEFL, or CERT practice exam |
+
+All core features are also accessible through the inline keyboard buttons.
+
+---
 
 ## Testing
-
-Run a quick syntax check for the repository:
 
 ```bash
 python -m compileall .
 ```
 
+---
+
 ## License
 
-This project is licensed under the MIT License. See [LICENSE](LICENSE) for details.
-
-## Contributing
-
-Contributions are welcome. Please open an issue to discuss major changes before submitting a pull request. For documentation updates or small fixes, submit a PR with a clear description of the change.
+Distributed under the MIT License. See [LICENSE](LICENSE) for details.
 
 ---
 
-If you would like, I can also:
+## Contributing
 
-- Run tests or linting on the codebase
-- Stage and commit this update to the local Git repository
-- Push the commit to a remote branch
-
+Contributions are welcome — open an issue to discuss major changes, or submit a pull request with a clear description of the improvement.
