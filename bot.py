@@ -1,12 +1,12 @@
 import os
 import logging
 from dotenv import load_dotenv
+load_dotenv()
+
 from telegram.ext import Application, CommandHandler, MessageHandler, CallbackQueryHandler, filters
 from telegram.error import NetworkError
 from telegram.ext import ContextTypes
-from handlers import start, help_command, resources_command, test_callback, resources_callback, main_menu_callback, handle_message
-
-load_dotenv()
+from handlers import start, help_command, resources_command, test_callback, exam_callback, resources_callback, main_menu_callback, handle_message
 
 logging.basicConfig(
     level=logging.WARNING,
@@ -34,6 +34,7 @@ def main():
     app.add_handler(CommandHandler("help", help_command))
     app.add_handler(CommandHandler("resources", resources_command))
     app.add_handler(CallbackQueryHandler(test_callback, pattern="^test_"))
+    app.add_handler(CallbackQueryHandler(exam_callback, pattern="^exam_"))
     app.add_handler(CallbackQueryHandler(resources_callback, pattern="^resources_"))
     app.add_handler(CallbackQueryHandler(main_menu_callback, pattern="^main_menu$"))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))

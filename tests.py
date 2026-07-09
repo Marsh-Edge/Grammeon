@@ -891,8 +891,9 @@ LEVEL_LABELS = {
 }
 
 
-def get_results(level: str, answers: list) -> dict:
-    questions = QUESTIONS[level]
+def get_results(level: str, answers: list, questions: list = None) -> dict:
+    if questions is None:
+        questions = QUESTIONS[level]
     total = len(questions)
     correct_count = 0
     details = []

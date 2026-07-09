@@ -1,7 +1,14 @@
+import re
 import httpx
 
 API_URL = "https://api.dictionaryapi.dev/api/v2/entries/en/{}"
 MAX_LENGTH = 4000
+MAX_WORD_LENGTH = 100
+VALID_WORD_PATTERN = re.compile(r"^[a-zA-Z\s\-']+$")
+
+
+def _is_valid_word(word: str) -> bool:
+    return bool(word) and len(word) <= MAX_WORD_LENGTH and bool(VALID_WORD_PATTERN.match(word))
 
 
 def _phonetic(data: list) -> str:
@@ -49,16 +56,19 @@ def format_definition(data: list) -> str:
 
 
 async def define(word: str) -> str:
-    url = API_URL.format(word.strip().lower())
+    word = word.strip()
+    if not _is_valid_word(word):
+        return "❌ Invalid input. Please enter only letters, spaces, hyphens, or apostrophes."
+    url = API_URL.format(word.lower())
     try:
         async with httpx.AsyncClient() as client:
             resp = await client.get(url, timeout=10)
     except httpx.HTTPError:
-        return f"⚠️ Network error while looking up *{word}*. Please try again later."
+        return "⚠️ Network error while looking up the word. Please try again later."
 
     if resp.status_code == 404:
-        return f"❌ Sorry, I couldn't find the word *{word}*."
+        return "❌ Sorry, I couldn't find that word."
     if resp.status_code != 200:
-        return f"⚠️ Something went wrong (status {resp.status_code}). Try again later."
+        return "⚠️ Something went wrong. Try again later."
     data = resp.json()
     return format_definition(data)
