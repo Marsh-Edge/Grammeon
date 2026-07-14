@@ -367,8 +367,8 @@ GRAMMAR_RULES = [
     (r'\bwill\s+has\b',        "will have",   "Use base verb after 'will'."),
     (r'\bwill\s+is\b',         "will be",     "Use base verb after 'will'."),
 
-    (r'\b(can|must|should|could|would|may|might|will|shall)\s+\w*[a-z]s\b',
-     None, "Use base verb after a modal (e.g. 'She can run' not 'She can runs')."),
+    (r'\b(can|must|should|could|would|may|might|will|shall)\s+\w{3,}[a-z]s\b',
+     None, "Use base verb after a modal (e.g. 'She can run' not 'She can runs'."),
     (r'\b(can|must|should|could|would|may|might)\s+goes\b',   r'\1 go',    "Use base verb after a modal."),
     (r'\b(can|must|should|could|would|may|might)\s+comes\b',  r'\1 come',  "Use base verb after a modal."),
     (r'\b(can|must|should|could|would|may|might)\s+works\b',  r'\1 work',  "Use base verb after a modal."),
@@ -522,7 +522,6 @@ GRAMMAR_RULES = [
     (r'\balots\b',            "a lot",       "'alots' is not a word — use 'a lot' (two words)."),
     (r'\beachother\b',        "each other",  "Use 'each other' (two words)."),
     (r'\binfact\b',           "in fact",     "Use 'in fact' (two words)."),
-    (r'\bin\s+fact\b',        None,          None),  # Placeholder — in fact with space is correct
     (r'\bincharge\b',         "in charge",   "Use 'in charge' (two words)."),
     (r'\bapart\s+of\b',       None,          "Use 'a part of' or 'apart from'."),
     (r'\bcan\s+not\b',        "cannot",      "Use 'cannot' (one word) in formal English."),
@@ -575,7 +574,7 @@ GRAMMAR_RULES = [
      r'\1 \2s', "Use the -s form with 'He/She/It' (e.g. 'He gives' not 'He give')."),
 
     # ── a + vowel sound (should be 'an') ─────────────────────
-    (r'\ba\s+(apple|elephant|ice|orange|umbrella|egg|hour|honest|heir|honor|herb|opinion|use|union|unique|unit|university|upstairs|upward|urban|urgent|useful|useless|usual|usually|utility)\b',
+    (r'\ba\s+(apple|elephant|ice|orange|umbrella|egg|opinion|use|union|unique|unit|university|upstairs|upward|urban|urgent|useful|useless|usual|usually|utility)\b',
      r'an \1', "Use 'an' before vowel sounds (e.g. 'an apple' not 'a apple')."),
 
     # ── There is a lot of + plural noun ──────────────────────
@@ -619,6 +618,138 @@ GRAMMAR_RULES = [
     (r"\b(He\s+is|She\s+is|He\'s|She\'s)\s+(?!going|coming|moving|traveling|flying|driving|walking|running|heading|bound|leaving|departing|returning|arriving|reaching|travel|go|come|move|fly|drive|walk|run|head|leave|depart|return|arrive|reach)\w+\s+to\s+(brazil|japan|china|india|france|germany|spain|italy|russia|canada|australia|mexico|england|ireland|scotland|wales|united\s+states|america|egypt|south\s+korea|north\s+korea|thailand|vietnam|philippines|indonesia|turkey|argentina|colombia|peru|chile|venezuela|ecuador|bolivia|paraguay|uruguay|panama|costa\s+rica|cuba|dominican|jamaica|trinidad|haiti|guatemala|honduras|nicaragua|el\s+salvador|belize|portugal|netherlands|belgium|switzerland|austria|poland|czech\s+republic|slovakia|hungary|romania|bulgaria|serbia|croatia|bosnia|montenegro|albania|north\s+macedonia|slovenia|estonia|latvia|lithuania|finland|sweden|norway|denmark|iceland|greece|cyprus|malta|luxembourg|liechtenstein|monaco|andorra|san\s+marino|vatican|morocco|algeria|tunisia|libya|sudan|south\s+sudan|ethiopia|somalia|kenya|tanzania|uganda|rwanda|burundi|congo|gabon|cameroon|nigeria|ghana|senegal|mali|niger|chad|burkina|ivory\s+coast|guinea|sierra\s+leone|liberia|gambia|cape\s+verde|mauritania|mauritius|madagascar|mozambique|angola|zambia|zimbabwe|botswana|namibia|south\s+africa|lesotho|eswatini|malawi)\b",
      None, "Use 'from' to indicate origin (e.g. 'He is John from Paris')."),
 
+    # ── Missing Auxiliary in Questions ────────────────────────
+    (r'\b(How)\s+(I|you|he|she|it|we|they)\s+(doing|going|coming)\b',
+     r'\1 \2 are \3', "Missing 'are' in question (e.g. 'How are you doing?')."),
+    (r'\b(What|Where|When|Why)\s+(I|you|he|she|it|we|they)\s+(want|need|like|have|do|go|come|live|work|think|know|eat|drink|buy|sell|make|take|give|see|hear|feel|read|write|speak|play|study|learn|teach|start|stop|help|call|try|use|look|seem|find|keep|hold|put|get|begin|leave|arrive|bring|run|walk|swim|fly|drive|ride|sing|dance|sleep|wake|sit|stand|open|close|wait|turn|move|follow|belong)\b',
+     None, "Missing auxiliary verb in question (e.g. 'What do you want?' not 'What you want?')."),
+    (r'\b(is|are|was|were)\s+(I|you|he|she|it|we|they)\s+(want|need|like|go|come|do|make|take|know|think|eat|drink|read|write|speak|play|work|live)\b',
+     None, "Use 'do/does/did' with main verbs in questions, not 'is/are' (e.g. 'Do you want?' not 'Are you want?')."),
+
+    # ── Adverb/Adjective Confusion ───────────────────────────
+    (r'\b(speaks?|talks?|walks?|runs?|drives?|swims?|sings?|dances?|plays?|works?|writes?|reads?|eats?|drinks?|cooks?|cleans?|washes?|listens?|looks?|watches?|performs?|argues?|behaves?|communicates?)\s+(beautiful|careful|careless|quick|slow|easy|hard|loud|quiet|soft|sweet|bitter|fresh|clean|dirty|clear|dark|bright|hot|cold|warm|cool|nice|good|bad|strong|weak|fast|early|late|far|near|high|low|deep|wide|thick|thin|heavy|light|safe|cheap|expensive|simple|difficult|funny|serious|happy|sad|angry|tired|busy|free|ready|true|possible|important|interesting|boring|exciting|tiring|surprising|confusing)\b',
+     None, "Use an adverb (not an adjective) to describe how an action is done (e.g. 'She speaks beautifully' not 'She speaks beautiful')."),
+    (r'\b(do|does|did|performed?|plays?|sings?|acts?|paints?|draws?|writes?|cooks?|works?)\s+good\b',
+     None, "Use 'well' (adverb) not 'good' (adjective) after a verb (e.g. 'She sings well' not 'She sings good')."),
+    (r'\b(do|does|did|performed?|plays?|sings?|acts?|paints?|draws?|writes?|cooks?|works?)\s+bad\b',
+     None, "Use 'badly' (adverb) not 'bad' (adjective) after a verb (e.g. 'He performs badly' not 'He performs bad')."),
+
+    # ── Wrong Pronoun Case ───────────────────────────────────
+    (r'\b(Me|Him|Her|Them|Us)\s+(am|is|are|was|were|have|has|had|do|does|did|will|would|can|could|should|must|may|might|shall)\b',
+     None, "Use a subject pronoun, not an object pronoun (e.g. 'I am' not 'Me am')."),
+    (r'\b(Me|Him|Her|Them|Us)\s+(went|came|ran|walked|played|worked|lived|knew|thought|wanted|needed|liked|loved|hated|felt|heard|saw|found|held|kept|left|met|paid|sent|spent|built|bought|sold|told|gave|took|made|did|got|began|woke|wrote|read|drove|rode|flew|grew|threw|drew|broke|spoke|chose|forgot|hid|bit|froze|stole|sang|swam|ran|ate|sat|stood|fought|caught|taught|brought|slept|swept|felt|meant|lost|won)\b',
+     None, "Use a subject pronoun, not an object pronoun (e.g. 'I went' not 'Me went')."),
+    (r'\bbetween\s+(you|him|her|them|us)\s+and\s+(I|he|she|they|we)\b',
+     r'between \1 and \2', "Use object pronouns after prepositions (e.g. 'between you and me' not 'between you and I')."),
+
+    # ── 'a/an' + Uncountable Noun ────────────────────────────
+    (r'\ba\s+(news|homework|furniture|luggage|equipment|advice|informations?|research|progress|traffic|music|evidence|data|paper|work|food|travel|fun|education|health|weather|knowledge|bread|rice|meat|fish|cheese|milk|coffee|tea|sugar|salt|butter|wine|beer|juice)\b',
+     None, "'\\1' is uncountable — do not use 'a' with it (e.g. 'some advice' not 'a advice')."),
+    (r'\ban\s+(news|homework|furniture|luggage|equipment|advice|informations?|research|progress|traffic|music|evidence|data|paper|work|food|travel|fun|education|health|weather|knowledge|bread|rice|meat|fish|cheese|milk|coffee|tea|sugar|salt|butter|wine|beer|juice)\b',
+     None, "'\\1' is uncountable — do not use 'an' with it (e.g. 'some information' not 'an information')."),
+
+    # ── Embedded Question Word Order ──────────────────────────
+    (r"\b(do\s+you\s+know|can\s+you\s+tell\s+me|could\s+you\s+tell\s+me|I\s+wonder|I\s+don't\s+know|I'm\s+not\s+sure|tell\s+me|explain\s+to\s+me)\s+(what|where|when|why|how)\s+(is|are|was|were|do|does|did|can|could|will|would|should|may|might)\s+(\w+)\b",
+     None, "In embedded questions, use statement word order (e.g. 'Do you know where the bank is?' not 'where is the bank?')."),
+
+    # ── Let/Make + Object + Base Verb (no 'to') ──────────────
+    (r'\b(let|make|made|have)\s+\w+\s+to\s+(go|come|do|be|make|take|have|see|get|give|find|tell|ask|try|leave|work|play|talk|walk|eat|drink|read|write|buy|sell|bring|teach|learn|start|stop|help|call|put|keep|begin|show|hear|think|know|want|look|seem|feel|say|use|pay|run|sit|stand|sleep|swim|sing|draw|fly|grow|throw|catch|fight|wear|steal|hide|forget|choose|freeze|wake|ride|drive|speak|break)\b',
+     None, "Do not use 'to' after 'let/make/have' + object (e.g. 'Let him go' not 'Let him to go')."),
+
+    # ── Conditional Errors ────────────────────────────────────
+    (r'\bif\s+(I|you|he|she|it|we|they)\s+would\s+have\b',
+     None, "Use past perfect in the if-clause, not 'would have' (e.g. 'If I had studied' not 'If I would have studied')."),
+    (r'\bif\s+(I|you|he|she|it|we|they)\s+would\s+be\b',
+     None, "Use 'were' (subjunctive) in hypothetical if-clauses (e.g. 'If I were you' not 'If I would be you')."),
+
+    # ── 'The reason is because' ─────────────────────────────
+    (r'\bthe\s+reason\s+is\s+because\b', "the reason is that",
+     "Use 'the reason is that' not 'the reason is because'."),
+
+    # ── 'One of the' + plural verb ──────────────────────────
+    (r'\bone\s+of\s+the\s+\w+s\s+(are|were|have|do)\b',
+     None, "Use a singular verb after 'one of the' (e.g. 'One of the students is' not 'One of the students are')."),
+
+    # ── More Preposition Errors ──────────────────────────────
+    (r'\bafraid\s+from\b',      "afraid of",      "Use 'afraid of' not 'afraid from'."),
+    (r'\blisten\s+music\b',     "listen to music", "Use 'listen to' + noun (e.g. 'listen to music')."),
+    (r'\bapologize\s+about\b',  "apologize for",   "Use 'apologize for' not 'apologize about'."),
+    (r'\bapologised\s+about\b', "apologised for",  "Use 'apologised for' not 'apologised about'."),
+    (r'\bapologized\s+about\b', "apologized for",  "Use 'apologized for' not 'apologized about'."),
+    (r'\bwait\s+to\s+(me|him|her|them|us)\b', r'wait for \1', "Use 'wait for' + object (e.g. 'wait for me' not 'wait to me')."),
+    (r'\blook\s+to\s+(me|him|her|them|us|the)\b', None, None),
+    (r'\bconsist\s+in\b',        "consist of",     "Use 'consist of' not 'consist in'."),
+    (r'\bdream\s+on\b',          "dream of",       "Use 'dream of' or 'dream about' not 'dream on'."),
+
+    # ── Number vs Amount ─────────────────────────────────────
+    (r'\ba\s+large\s+amount\s+of\s+(people|students|workers|members|books|cars|houses|children|men|women|animals|trees|flowers|days|hours|minutes|years|questions|problems|ideas|plans|countries|cities)\b',
+     None, "Use 'a large number of' with countable plural nouns (e.g. 'a number of people' not 'an amount of people')."),
+    (r'\ba\s+number\s+of\s+(water|money|information|advice|furniture|equipment|luggage|homework|research|progress|traffic|music|evidence|data|paper|work|food|education|health|weather|knowledge)\b',
+     None, "Use 'an amount of' with uncountable nouns (e.g. 'an amount of water' not 'a number of water')."),
+
+    # ── Common Misspellings ──────────────────────────────────
+    (r'\bdefinately\b',       "definitely",   "'definately' is misspelled — use 'definitely'."),
+    (r'\bdefinatly\b',        "definitely",   "'definatly' is misspelled — use 'definitely'."),
+    (r'\bdefinatley\b',       "definitely",   "'definatley' is misspelled — use 'definitely'."),
+    (r'\baccomodate\b',       "accommodate",  "'accommodate' has double 'c' and double 'm'."),
+    (r'\baccomadate\b',       "accommodate",  "'accomadate' is misspelled — use 'accommodate'."),
+    (r'\boccured\b',          "occurred",     "'occurred' has double 'r'."),
+    (r'\boccurence\b',        "occurrence",   "'occurence' is misspelled — use 'occurrence'."),
+    (r'\brecieve\b',          "receive",      "'receive' — 'i' before 'e' except after 'c'."),
+    (r'\breciever\b',         "receiver",     "'reciever' is misspelled — use 'receiver'."),
+    (r'\bseperate\b',         "separate",     "'separate' has an 'a' in the middle, not an 'e'."),
+    (r'\bseperation\b',       "separation",   "'seperation' is misspelled — use 'separation'."),
+    (r'\bneccessary\b',       "necessary",    "'necessary' has one 'c' and double 's'."),
+    (r'\bneccesary\b',        "necessary",    "'neccesary' is misspelled — use 'necessary'."),
+    (r'\bindependant\b',      "independent",  "'independent' ends with '-ent', not '-ant'."),
+    (r'\bpriviledge\b',       "privilege",    "'privilege' — no 'd' after 'i'."),
+    (r'\bpublically\b',       "publicly",     "'publically' is nonstandard — use 'publicly'."),
+    (r'\bforsee\b',           "foresee",      "'foresee' has an 'e' after 'for'."),
+    (r'\bgovornment\b',       "government",   "'govornment' is misspelled — use 'government'."),
+    (r'\bmaintainance\b',     "maintenance",  "'maintainance' is misspelled — use 'maintenance'."),
+    (r'\bnoticable\b',        "noticeable",   "'noticeable' keeps the 'e' before '-able'."),
+    (r'\brecomend\b',         "recommend",    "'recommend' has double 'm'."),
+    (r'\brecomended\b',       "recommended",  "'recomended' is misspelled — use 'recommended'."),
+    (r'\brelevent\b',         "relevant",     "'relevant' — not 'relevent'."),
+    (r'\bwierd\b',            "weird",        "'weird' — 'e' before 'i', not 'ie'."),
+    (r'\bembarass\b',         "embarrass",    "'embarrass' has double 'r' and double 's'."),
+    (r'\bexistance\b',        "existence",    "'existance' is misspelled — use 'existence'."),
+    (r'\boccassion\b',        "occasion",     "'occasion' has double 'c' and single 's'."),
+    (r'\bpreceed\b',          "precede",      "'precede' — 'cede' not 'ceed'."),
+    (r'\buntill\b',           "until",        "'until' has only one 'l'."),
+    (r'\bbecouse\b',          "because",      "'becouse' is misspelled — use 'because'."),
+    (r'\bwhould\b',           "would",        "'whould' is misspelled — use 'would'."),
+    (r'\bshoud\b',            "should",       "'shoud' is misspelled — use 'should'."),
+    (r'\bcoud\b',             "could",        "'coud' is misspelled — use 'could'."),
+    (r'\bprobaly\b',          "probably",     "'probaly' is misspelled — use 'probably'."),
+    (r'\bprobobly\b',         "probably",     "'probobly' is misspelled — use 'probably'."),
+    (r'\bbeleive\b',          "believe",      "'believe' — 'ie' not 'ei' (after b)."),
+    (r'\bfreind\b',           "friend",       "'friend' — 'ie' not 'ei'."),
+    (r'\bbelive\b',           "believe",      "'believe' is misspelled — use 'believe'."),
+    (r'\bcomming\b',          "coming",       "'coming' has only one 'm'."),
+    (r'\bgoign\b',            "going",        "'goign' is misspelled — use 'going'."),
+    (r'\blenght\b',           "length",       "'length' — not 'lenght'."),
+    (r'\bwidht\b',            "width",        "'width' — not 'widht'."),
+    (r'\bheigth\b',           "height",       "'height' — not 'heigth'."),
+    (r'\btruely\b',           "truly",        "'truly' — no 'e' after 'u'."),
+    (r'\barguement\b',        "argument",     "'argument' — no 'e' after 'u'."),
+    (r'\bsuprise\b',          "surprise",     "'surprise' starts with 'sur-', not 'sup-'."),
+    (r'\bsuprised\b',         "surprised",    "'surprised' starts with 'sur-', not 'sup-'."),
+
+    # ── More Missing Contractions ────────────────────────────
+    (r'\baint\b',             "isn't",        "'ain't' is nonstandard — use 'isn't' or 'aren't'."),
+
+    # ── More Irregular Past Tense ────────────────────────────
+    (r'\b(I|He|She|It|You|We|They)\s+sweeped\b',   r'\1 swept',    "'sweeped' is not valid — past tense of 'sweep' is 'swept'."),
+    (r'\b(I|He|She|It|You|We|They)\s+creeped\b',   r'\1 crept',    "'creeped' is not valid — past tense of 'creep' is 'crept'."),
+    (r'\b(I|He|She|It|You|We|They)\s+weaved\b',    r'\1 wove',     "'weaved' is not valid — past tense of 'weave' is 'wove'."),
+    (r'\b(I|He|She|It|You|We|They)\s+binded\b',    r'\1 bound',    "'binded' is not valid — past tense of 'bind' is 'bound'."),
+    (r'\b(I|He|She|It|You|We|They)\s+grinded\b',   r'\1 ground',   "'grinded' is not valid — past tense of 'grind' is 'ground'."),
+    (r'\b(I|He|She|It|You|We|They)\s+cutted\b',    r'\1 cut',      "'cutted' is not valid — past tense of 'cut' is 'cut'."),
+    (r'\b(I|He|She|It|You|We|They)\s+shutted\b',   r'\1 shut',     "'shutted' is not valid — past tense of 'shut' is 'shut'."),
+    (r'\b(I|He|She|It|You|We|They)\s+teared\b',    r'\1 tore',     "'teared' is not valid — past tense of 'tear' is 'tore'."),
+    (r'\b(I|He|She|It|You|We|They)\s+hanged\b',    r'\1 hung',     "'hanged' is not valid — past tense of 'hang' is 'hung'."),
+
     # ── Capitalization ────────────────────────────────────────
 
     (r'(?-i:\bi\b)', "I", "The pronoun 'I' must always be capitalized."),
@@ -631,4 +762,6 @@ GRAMMAR_RULES = [
     (r'\s+([,\.!?])', r'\1', "Remove space before punctuation."),
     (r'([\.!?])(\w)', r'\1 \2', "Add space after sentence-ending punctuation."),
     (r'  +', ' ', "Replace multiple spaces with a single space."),
+    # ── Sentence-end punctuation ──────────────────────────────
+    (r'^[A-Za-z][^.!?]*[^.!?]$', None, "Sentences should end with proper punctuation (. ! ?)."),
 ]
